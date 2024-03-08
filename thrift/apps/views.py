@@ -4,6 +4,3 @@ from django.shortcuts import render
 def HomePage(request):
     return render (request , "HomePage.html")
 
-
-def register(request):
-    return render(request,"signup.html")
