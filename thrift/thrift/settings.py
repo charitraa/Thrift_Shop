@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'thrift.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'Thirft',
+    'NAME': 'thrift',
     'HOST':'localhost',
     'PORT': '3306',
     'USER': 'root',
