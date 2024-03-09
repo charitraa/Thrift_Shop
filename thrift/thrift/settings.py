@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Application definition
 
@@ -74,11 +76,16 @@ WSGI_APPLICATION = 'thrift.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#connect with database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'Thirft',
+    'HOST':'localhost',
+    'PORT': '3306',
+    'USER': 'root',
+    'PASSWORD': ''
+    } 
 }
 
 

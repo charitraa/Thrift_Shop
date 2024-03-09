@@ -89,7 +89,9 @@
             <div class="title">
                 Create Account
             </div>
-            <form action="">
+           
+            <form action="{% url 'signup'%}" method="POST">
+                {% csrf_token %}
                 <label for="username">Username</label>
                 <input type="text"  name="username" id="username">
                 <label for="phone">Phone Number</label>
@@ -104,13 +106,14 @@
                 <input type="password" name="password" id="password">
                 <label for="repassword">Re-Password</label>
                 <input type="repassword" name="repassword" id="repassword">
-            </form> 
+                <button >Signup</button>
+            </form>
             <div class="buttn">
                 <div class="check">
                     <input type="checkbox" name="remember" id="remember">
                     <label for="remember">Remember Me</label>
                 </div>
-                <button>Signup</button>
+                
                 <div class="sign">
                     Already have an account? Signin
                 </div>
