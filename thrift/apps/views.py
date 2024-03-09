@@ -20,7 +20,7 @@ def signup(request):
             if password == repassword:
                 newuser = User.objects.create(Username=uname,Email=email,password=password,phone_Number=phone, Gender=gender ,Date_of_birth=dob)
                 if newuser:
-                    return redirect('signup')
+                    return redirect('login')
                 
     return render(request,"Signup.html")
 
@@ -29,5 +29,14 @@ def HomePage(request):
     return render (request , "HomePage.html")
 
 def login(request):
+    if  request.method =='POST':
+        uname = request.POST['username']
+        password = request.POST['password']
+        user = User.objects.get(Username=uname)
+        if user:
+            if user.password == password:
+                return redirect('Home')
+        else:
+            return redirect('login')
     return render (request , "loginin.html")
 
