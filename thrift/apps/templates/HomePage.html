@@ -3,98 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
     <style>
-        body {
-    font-family: sans-serif;
+        * {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
 }
 
-.container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.logo {
-    width: 100px;
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.input-group input {
+.main {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(back.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 90vh;
+    transform: translateY(-20vh);
+    margin-top: 9%;
 }
 
-.signup-btn {
-    display: block;
-    width: 100%;
-    padding: 15px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    font-size: 16px;
+.icon {
+    color: white;
+    float: left;
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 35px;
+    margin-left: 35px;
     cursor: pointer;
 }
-
-p {
-    margin-top: 10px;
+.logo{
+    display: inline-block;
+    color: white; /* Initial color */
+    transition: color 0.3s ease;
+}
+.thrift:hover{
+    color: red;
+}
+.nepal:hover{
+    color:rgb(63, 63, 235)
 }
 
-a {
-    color: #aaa;
-    text-decoration: none;
+.btn,
+.login-button,.signup-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3c6dcf;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    float: right;
+    margin-top: 40px;
 }
 
+.btn {
+
+    width: 170px;
+    height: 50px;
+    margin-right: 25%; /* Adjust margin for spacing between buttons */
+}
+
+.signup-button{
+    height: 45px;
+    margin-right: 20px;
+}
+.signup-button:hover{
+    background-color: #45a049;
+}
+.btn:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.login-button {
+    height: 45px;
+    margin-right: 20px; /* Adjust margin for spacing between buttons */
+}
+
+.navbar {
+    width: 100%;
+    height: 130px;
+    background-color: rgb(35, 33, 33);
+    position: sticky;
+    
+}
+.login-button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-field {
+    padding: 15px;
+    border: 0px solid #ccc;
+    border-radius: 30px; /* Add a slight curve */
+    margin-left: 70px;
+    margin-top: 17%;
+    width: 1000px;
+    height: 40px;
+    font-size: 24px;
+    
+   
+}
+
+.search-button {
+    padding: 17px    50px;
+    font-size: 18px;
+    color: white;
+    background-color: #3c6dcf;
+    border: none;
+    border-radius: 29px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left:-164px;
+    margin-top: 17%;
+}
+
+.search-button:hover {
+    background-color: #45a049;
+}
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="" alt="Astro Logo" class="logo">
-        <h1>Exploring new frontiers,<br> one step at a time.</h1>
-        <form action="#" method="post">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required>
+   <nav class="navbar">
+        
+            <div class=" icon">
+                <h2 class="logo"> 
+                    <span class="thrift">Thrift</span> 
+                    <span class="nepal">Nepal</span>
+                </h2>
             </div>
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+            <button class="login-button">Login</button>
+            <button class="signup-button">Sign up</button>
+            <div class=" post">
+                <a href="#"><button class ="btn"> Post for free</button></a>
+
             </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" required>
+           
+
+        
+        
+    </nav>
+        <div class="main">
+ <div class="search-box">
+                <input type="text" placeholder="Search..." class="search-field">
+                <button class="search-button">Search</button>
             </div>
-            <button type="submit" class="signup-btn">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="#">Log in</a></p>
-    </div>
+        </div>
 </body>
 </html>
