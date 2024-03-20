@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {%load static%}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -12,7 +13,7 @@
 
 .main {
     width: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(back.jpg);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url('{%static "back.jpg"%}');
     background-position: center;
     background-size: cover;
     height: 90vh;
@@ -128,6 +129,7 @@
     </style>
 </head>
 <body>
+    
    <nav class="navbar">
         
             <div class=" icon">
