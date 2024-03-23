@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Product Details</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 140px auto;
+            display: flex;
+        }
+
+        .left-side {
+            flex-basis: 40%;
+            margin-left: 100px;
+        }
+
+        .left-side img.product-image {
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 70px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-left: 70px;
+        }
+
+        .left-side h1 {
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: unset;
+            /* margin-left: 70px; */
+
+        }
+
+        .right-side {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 25px;
+            width: 40%;
+            margin-left: 170px;
+            margin-top: 30px;
+        }
+
+        .right-side .price {
+            color: #0c1825;
+            font-size: 50px;
+            font-weight: bold;
+            margin-left: 40px;
+            margin-bottom: 0px;
+        }
+
+        .right-side hr {
+            position: relative;
+
+        }
+
+        .right-side .description {
+            margin-top: 20px;
+            font-size: 25px;
+            overflow: hidden;
+            max-height: 115px;
+            transition: max-height 0.3s ease;
+            margin-left: 40px;
+            text-align: justify;
+            width: 90%;
+
+        }
+
+        .read-more {
+            color: rgb(142, 86, 171);
+            cursor: pointer;
+            display: block;
+        }
+
+        .review {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .review h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 24px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating label:hover,
+        .rating input:checked~label {
+            color: #ffcc00;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            float: right;
+
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .contactno {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .contactno .contact {
+            font-size: 30px;
+            margin-top: 10px;
+        }
+
+        .contactno h2 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 25px;
+            margin-left: 20px;
+        }
+
+        .contactno h2 i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .location h2{
+            font-size: 30px;
+            margin-top: 100px;
+            margin-left: 46px;
+        }
+    </style>
+</head>
+    {%load static%}
+<div class="container">
+    <div class="left-side">
+        <h1>H-P EliteBook 640G9/640G9/650G9 Intel Core Series 12th Generation</h1>
+        <img src="{%static 'girl.jpeg'%}" alt="Product Image" class="product-image">
+    </div>
+    <div class="right-side">
+        <p class="price">NPR 820</p>
+        <hr>
+
+
+        <div id="description" class="description">
+            <p>Description of the product goes here. Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed vestibulum est vitae dui
+                consectetur, eu mattis nulla finibus. Morbi suscipit lacus non eros congue, non semper dolor
+                interdum. Duis vulputate nisi vel turpis fermentum, ac finibus libero tincidunt. Nulla facilisi.
+                Suspendisse potenti. Sed sit amet risus a augue posuere placerat. Fusce et lectus rutrum, congue
+                lacus vel, maximus tortor. Integer varius ultrices nisl ac dapibus. Mauris semper enim at lorem
+                posuere, nec dignissim mauris dapibus. Curabitur lacinia ante vitae odio facilisis, vel aliquam
+                lectus efficitur. Proin non enim quis eros malesuada consectetur. Duis id lacus euismod, pretium
+                risus nec, posuere nunc. Nam ac felis feugiat, tempus arcu vel, dapibus neque. Curabitur ac
+                molestie nisl consectetur adipiscing elit. Sed vestibulum est vitae dui consectetur, eu mattis nulla
+                finibus.</p>
+        </div>
+        <p class="read-more" onclick="Description()">Read more</p>
+        <!-- <div class="review">
+            <h3>Rate this product:</h3>
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            </div>
+            <button class="btn">Submit Rating</button>
+        </div> -->
+        <hr>
+        <div class="contactno">
+            <h2 class="contact">Contact information</h2>
+            <h2><i class="material-icons">call</i>Phone number :</h2>
+            <h2><i class="material-icons">mail</i>Email :</h2>
+
+        </div>
+        <hr style="margin-top: 20px;">
+        <button class="btn">Add to Cart</button>
+        <div class="location">
+            <h2>Location</h2>
+        </div>
+        
+    </div>
+
+</div>
+<script>
+    function Description() {
+        var desc = document.getElementById("description");
+        var readMoreText = document.querySelector(".read-more");
+
+        if (desc.style.maxHeight) {
+            desc.style.maxHeight = null;
+            readMoreText.innerText = "Read more";
+        } else {
+            desc.style.maxHeight = desc.scrollHeight + "px";
+            readMoreText.innerText = "Read less";
+        }
+    }
+
+
+</script>
+</body>
+
+</html>

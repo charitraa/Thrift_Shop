@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Item Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f3f3f3;
+        }
+
+        .container {
+
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 6%;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Gill Sans';
+            font-size: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            font-size: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: larger;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: larger;
+        }
+
+        button[type="submit"] {
+            background-color: #bb1ccc;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 25%;
+            font-size: 25px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1d75c7;
+        }
+
+        .form-group #priceType option{
+            font-size: 30px;
+
+        }
+        .form-group #category option{
+            font-size: 30px;
+
+        }
+        /* .form-group label + input[type="file"] {
+        font-size: 20px;
+        } */
+        .form-group input[type="file"] {
+        font-size: 25px;
+        }
+
+        ::placeholder {
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+.container {
+    color: rgb(247, 187, 235);
+    background-color:rgb(120, 50, 120);
+}
+
+
+
+
+
+
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Post Item</h1>
+        <form id="postItemForm">
+            <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price NRS:</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+
+            <div class="form-group">
+                <label for="priceType" style="margin-top: 25px;">Price Type:</label>
+                <select id="priceType" name="priceType" required>
+                    <option value="fixed">Fixed</option>
+                    <option value="negotiable">Negotiable</option>
+                </select>
+            </div>
+            
+            <div class="phone-number">
+                <label for="phonenum" style="font-size: 25px;">Phone Number:</label>
+                <input type="number" id="phonenum" required >
+
+            </div>
+            <br><br>
+            <div class="email">
+                <label style="font-size: 25px;">Email:</label>
+                <input type="email" id="email" required style="width: 99%; height: 45px; border-radius: 5px;">
+
+            </div><br>
+            <br>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="" selected disabled>Select category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Books">Books</option>
+                    <option>others</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+
+            <button type="submit">Post Item</button>
+        </form>
+    </div>
+</body>
+
+</html>

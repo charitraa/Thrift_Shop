@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {%load static%}
     <meta charset="UTF-8">
@@ -7,154 +8,172 @@
     <title>Document</title>
     <style>
         * {
-    margin: 0;
-    padding: 0;
-}
+            margin: 0;
+            padding: 0;
+        }
 
-.main {
-    
-    width: 100%;
-    background-image:url("{%static 'back.jpg'%}"); 
-    background-position: center;
-    background-size: cover;
-    height: 90vh;
-    transform: translateY(-20vh);
-    margin-top: 9%;
-}
+        .main {
 
-.icon {
-    color: white;
-    float: left;
-    font-size: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-top: 35px;
-    margin-left: 35px;
-    cursor: pointer;
-}
-.logo{
-    display: inline-block;
-    color: white; /* Initial color */
-    transition: color 0.3s ease;
-}
-.thrift:hover{
-    color: red;
-}
-.nepal:hover{
-    color:rgb(63, 63, 235)
-}
+            width: 100%;
+            background-image:url("{%static 'back.jpg'%}");
+            background-position: center;
+            background-size: cover;
+            height: 90vh;
+            transform: translateY(-20vh);
+            margin-top: 9%;
+            position: fixed;
+        }
 
-.btn,
-.login-button,.signup-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #3c6dcf;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    float: right;
-    margin-top: 40px;
-}
+        .icon {
+            color: white;
+            float: left;
+            font-size: 30px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-top: 35px;
+            margin-left: 35px;
+            cursor: pointer;
+        }
 
-.btn {
+        .logo {
+            display: inline-block;
+            color: white;
+            /* Initial color */
+            transition: color 0.3s ease;
+        }
 
-    width: 170px;
-    height: 50px;
-    margin-right: 25%; /* Adjust margin for spacing between buttons */
-}
+        .thrift:hover {
+            color: red;
+        }
 
-.signup-button{
-    height: 45px;
-    margin-right: 20px;
-}
-.signup-button:hover{
-    background-color: #45a049;
-}
-.btn:hover {
-    background-color: #45a049; /* Darker green */
-}
+        .nepal:hover {
+            color: rgb(63, 63, 235)
+        }
 
-.login-button {
-    height: 45px;
-    margin-right: 20px; /* Adjust margin for spacing between buttons */
-}
+        .btn,
+        .login-button,
+        .signup-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #3c6dcf;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            float: right;
+            margin-top: 40px;
+        }
 
-.navbar {
-    width: 100%;
-    height: 130px;
-    background-color: rgb(35, 33, 33);
-    position: sticky;
-    
-}
-.login-button:hover {
-    background-color: #45a049; /* Darker green */
-}
+        .btn {
+
+            width: 170px;
+            height: 50px;
+            margin-right: 25%;
+        }
+
+        .signup-button {
+            height: 45px;
+            margin-right: 20px;
+        }
+
+        .signup-button:hover {
+            background-color: #45a049;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .login-button {
+            height: 45px;
+            margin-right: 20px;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 130px;
+            background-color: rgb(35, 33, 33);
+            position: sticky;
+
+        }
+
+        .login-button:hover {
+            background-color: #45a049;
+        }
 
 
-.search-box {
-    display: flex;
-    align-items: center;
-}
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
 
-.search-field {
-    padding: 15px;
-    border: 0px solid #ccc;
-    border-radius: 30px; /* Add a slight curve */
-    margin-left: 70px;
-    margin-top: 17%;
-    width: 1000px;
-    height: 40px;
-    font-size: 24px;
-    
-   
-}
+        .search-field {
+            padding: 15px;
+            border: 0px solid #ccc;
+            border-radius: 30px;
+            margin-left: 70px;
+            margin-top: 17%;
+            width: 1000px;
+            height: 40px;
+            font-size: 24px;
 
-.search-button {
-    padding: 17px    50px;
-    font-size: 18px;
-    color: white;
-    background-color: #3c6dcf;
-    border: none;
-    border-radius: 29px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-left:-164px;
-    margin-top: 17%;
-}
 
-.search-button:hover {
-    background-color: #45a049;
-}
+        }
+
+        .search-button {
+            padding: 17px 50px;
+            font-size: 18px;
+            color: white;
+            background-color: #3c6dcf;
+            border: none;
+            border-radius: 29px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: -164px;
+            margin-top: 17%;
+        }
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
+
 <body>
-    
-   <nav class="navbar">
-        
-            <div class=" icon">
-                <h2 class="logo"> 
-                    <span class="thrift">Thrift</span> 
-                    <span class="nepal">Nepal</span>
-                </h2>
-            </div>
-            <button class="login-button">Login</button>
-            <button class="signup-button">Sign up</button>
-            <div class=" post">
-                <a href="#"><button class ="btn"> Post for free</button></a>
 
-            </div>
-           
+    <nav class="navbar">
 
-        
-        
-    </nav>
-        <div class="main">
- <div class="search-box">
-                <input type="text" placeholder="Search..." class="search-field">
-                <button class="search-button">Search</button>
-            </div>
+        <div class=" icon">
+            <h2 class="logo">
+                <span class="thrift">Thrift</span>
+                <span class="nepal">Nepal</span>
+            </h2>
         </div>
+      <a href="{% url 'login' %}">
+        <button class="login-button">Login</button>
+    </a>
+    
+        
+         <button class="signup-button">Sign up</button>
+         
+        <div class=" post">
+            <a href="{%url 'form' %}">
+                <button class="btn"> Post for free</button>
+            </a>
+
+        </div>
+
+
+
+
+    </nav>
+    <div class="main">
+        <div class="search-box">
+            <input type="text" placeholder="Search..." class="search-field">
+            <button class="search-button">Search</button>
+        </div>
+    </div>
 </body>
+
 </html>
