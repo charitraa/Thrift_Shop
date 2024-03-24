@@ -14,7 +14,6 @@
         }
 
         .container {
-
             max-width: 600px;
             margin: 0 auto;
             background-color: #fff;
@@ -22,6 +21,8 @@
             margin-top: 6%;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: rgb(255, 255, 255);
+            background-color: rgb(175, 192, 214);
         }
 
         h1 {
@@ -57,7 +58,7 @@
         }
 
         button[type="submit"] {
-            background-color: #bb1ccc;
+            background-color: #1f1ccc;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -71,36 +72,35 @@
             background-color: #1d75c7;
         }
 
-        .form-group #priceType option{
+        .form-group #priceType option {
             font-size: 30px;
-
         }
-        .form-group #category option{
+
+        .form-group #category option {
             font-size: 30px;
-
         }
-        /* .form-group label + input[type="file"] {
-        font-size: 20px;
-        } */
+
         .form-group input[type="file"] {
-        font-size: 25px;
+            font-size: 25px;
         }
 
         ::placeholder {
-    font-size: 16px; /* Adjust the font size as needed */
-}
+            font-size: 16px; /* Adjust the font size as needed */
+        }
 
-.container {
-    color: rgb(247, 187, 235);
-    background-color:rgb(120, 50, 120);
-}
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+        }
 
+        .input-container input {
+            width: 47%; /* Adjust width as needed */
+        }
 
+        .input-container label {
+            width: 47%; /* Adjust width as needed */
+        }
 
-
-
-
-        
     </style>
 </head>
 
@@ -109,9 +109,16 @@
     <div class="container">
         <h1>Post Item</h1>
         <form id="postItemForm">
-            <div class="form-group">
-                <label for="productName">Product Name:</label>
-                <input type="text" id="productName" name="productName" required>
+            <div class="input-container">
+                <div class="form-group">
+                    <label for="productName">Product Name:</label>
+                    <input type="text" id="productName" name="productName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price NRS:</label>
+                    <input type="number" id="price" name="price" required>
+                </div>
             </div>
 
             <div class="form-group">
@@ -119,9 +126,16 @@
                 <textarea id="description" name="description" required></textarea>
             </div>
 
+            <div class="input-container">
             <div class="form-group">
-                <label for="price">Price NRS:</label>
-                <input type="number" id="price" name="price" required>
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="" selected disabled>Select category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Books">Books</option>
+                    <option>others</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -131,10 +145,14 @@
                     <option value="negotiable">Negotiable</option>
                 </select>
             </div>
+        </div>
+
+
             
+
             <div class="phone-number">
                 <label for="phonenum" style="font-size: 25px;">Phone Number:</label>
-                <input type="number" id="phonenum" required >
+                <input type="number" id="phonenum" required>
 
             </div>
             <br><br>
@@ -149,16 +167,7 @@
                 <input type="text" id="location" name="location" required>
             </div>
 
-            <div class="form-group">
-                <label for="category">Category:</label>
-                <select id="category" name="category" required>
-                    <option value="" selected disabled>Select category</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Clothing">Clothing</option>
-                    <option value="Books">Books</option>
-                    <option>others</option>
-                </select>
-            </div>
+           
 
             <div class="form-group">
                 <label for="image">Upload Image:</label>
