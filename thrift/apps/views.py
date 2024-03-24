@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .models import User
+from .models import Customer
 # Create your views here.
 
 def signup(request):
@@ -12,13 +12,13 @@ def signup(request):
         repassword = request.POST['repassword']
         phone = request.POST['phone']
         gender = request.POST['gender']
-        user = User.objects.filter(Email = email)
+        user = Customer.objects.filter(Email = email)
 
         if user:
             return redirect('signup')
         else:
             if password == repassword:
-                newuser = User.objects.create(Username=uname,Email=email,password=password,phone_Number=phone, Gender=gender ,Date_of_birth=dob)
+                newuser = Customer.objects.create(Username=uname,Email=email,password=password,phone_Number=phone, Gender=gender ,Date_of_birth=dob)
                 if newuser:
                     return redirect('login')
                 
@@ -32,7 +32,7 @@ def login(request):
     if  request.method =='POST':
         uname = request.POST['username']
         password = request.POST['password']
-        user = User.objects.get(Username=uname)
+        user = Customer.objects.get(Username=uname)
         if user:
             if user.password == password:
                 return redirect('Home')

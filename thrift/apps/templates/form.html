@@ -24,7 +24,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
+        .po {
             margin-bottom: 20px;
             text-align: center;
             font-family: 'Gill Sans';
@@ -36,16 +36,16 @@
             font-size: 20px;
         }
 
-        label {
+        form label {
             display: block;
             margin-bottom: 10px;
             font-size: larger;
         }
 
-        input[type="text"],
-        input[type="number"],
-        textarea,
-        select {
+        form input[type="text"],
+        form input[type="number"],
+        form textarea,
+        form select {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
@@ -56,7 +56,7 @@
             font-size: larger;
         }
 
-        button[type="submit"] {
+        form button[type="submit"] {
             background-color: #bb1ccc;
             color: white;
             padding: 12px 20px;
@@ -67,7 +67,7 @@
             font-size: 25px;
         }
 
-        button[type="submit"]:hover {
+        form button[type="submit"]:hover {
             background-color: #1d75c7;
         }
 
@@ -86,7 +86,7 @@
         font-size: 25px;
         }
 
-        ::placeholder {
+        form::placeholder {
     font-size: 16px; /* Adjust the font size as needed */
 }
 
@@ -107,7 +107,7 @@
 <body>
 
     <div class="container">
-        <h1>Post Item</h1>
+        <h1 class="po">Post Item</h1>
         <form id="postItemForm">
             <div class="form-group">
                 <label for="productName">Product Name:</label>
@@ -123,14 +123,6 @@
                 <label for="price">Price NRS:</label>
                 <input type="number" id="price" name="price" required>
             </div>
-
-            <div class="form-group">
-                <label for="priceType" style="margin-top: 25px;">Price Type:</label>
-                <select id="priceType" name="priceType" required>
-                    <option value="fixed">Fixed</option>
-                    <option value="negotiable">Negotiable</option>
-                </select>
-            </div>
             
             <div class="phone-number">
                 <label for="phonenum" style="font-size: 25px;">Phone Number:</label>
@@ -138,12 +130,6 @@
 
             </div>
             <br><br>
-            <div class="email">
-                <label style="font-size: 25px;">Email:</label>
-                <input type="email" id="email" required style="width: 99%; height: 45px; border-radius: 5px;">
-
-            </div><br>
-            <br>
             <div class="form-group">
                 <label for="location">Location:</label>
                 <input type="text" id="location" name="location" required>
