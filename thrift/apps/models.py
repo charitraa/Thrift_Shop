@@ -11,3 +11,13 @@ class Customer(models.Model):
     
     def __str__(self):
         return self.Username
+
+class Product(models.Model):
+    Product_Name = models.CharField(max_length=200)
+    Product_Price = models.IntegerField()
+    Description = models.TextField()
+    Location = models.TextField()
+    Phone_Number = models.IntegerField()
+
+    def __str__(self):
+        return self.Product_Name
