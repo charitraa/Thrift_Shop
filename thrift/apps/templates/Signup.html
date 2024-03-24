@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoginPage</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+            gap: 100px;
+        }
+        .photo{
+            
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            align-items: flex-start;
+            width: 50%;
+            padding: 80px;
+
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        .title{
+            font-size: 50px;
+            color: black;
+            font-weight: bold;
+        }
+        form label{
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 30px;
+
+        }
+        form input{
+            background-color: rgb(241, 230, 241);
+            border-radius: 20px;
+            border: hidden;
+            width: 700px;
+            padding: 20px;
+            height: 40px;
+            
+        }
+        label{
+            font-size: 20px;
+
+        }
+        input{
+            font-size: 20px;
+        }
+        button{
+            width: 400px;
+            font-size: 20px;
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            height: 35px;
+
+            
+        }
+        .sign{
+            font-size: 20px;
+        }
+        .buttn{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+    {% load static  %}
+    <div class="container">
+        <div class="photo">
+            <img src="{% static 'one.png' %}" alt="" height="1150px" width="1000px" >
+        </div>
+        <div class="main">
+            <div class="title">
+                Create Account
+            </div>
+           
+            <form action="{% url 'signup'%}" method="POST">
+                {% csrf_token %}
+                <label for="username">Username</label>
+                <input type="text"  name="username" id="username">
+                <label for="phone">Phone Number</label>
+                <input type="text"  name="phone" id="phone">
+                <label for="gender">Gender</label>
+                <input type="gender" name="gender" id="gender">
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" id="dob">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <label for="repassword">Re-Password</label>
+                <input type="repassword" name="repassword" id="repassword">
+                <button >Signup</button>
+            </form>
+            <div class="buttn">
+                <div class="check">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
+                
+                <div class="sign">
+                    Already have an account? <a href="{% url 'login'%}">Signin</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

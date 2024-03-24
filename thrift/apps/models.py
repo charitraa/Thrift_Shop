@@ -1,3 +1,13 @@
 from django.db import models
 
 # Create your models here.
+class Customer(models.Model):
+    Username = models.CharField(max_length=200,default='')
+    phone_Number= models.CharField(max_length=200,default='')
+    Gender = models.CharField(max_length=200,default='')
+    Date_of_birth = models.DateField(null=True)
+    Email = models.EmailField(default='')
+    password = models.CharField(max_length=200 ,default='')
+    
+    def __str__(self):
+        return self.Username

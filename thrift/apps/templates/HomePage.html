@@ -1,179 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     {%load static%}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
-        .main {
+      .main {
+        width: 100%;
+        background: url("{% static 'background.jpg' %}");
+        background-size: cover;
+        height: 108.5vh;
+        transform: translateY(-20vh);
+        margin-top: 6%;
+        position: absolute;
+        z-index: -1;
+      }
 
-            width: 100%;
-            background-image:url("{%static 'back.jpg'%}");
-            background-position: center;
-            background-size: cover;
-            height: 90vh;
-            transform: translateY(-20vh);
-            margin-top: 9%;
-            position: fixed;
-        }
+      span {
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        cursor: pointer;
+      }
 
-        .icon {
-            color: white;
-            float: left;
-            font-size: 30px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            margin-top: 35px;
-            margin-left: 35px;
-            cursor: pointer;
-        }
+      .logo {
+        color: white;
+        transition: color 0.3s ease;
+      }
 
-        .logo {
-            display: inline-block;
-            color: white;
-            /* Initial color */
-            transition: color 0.3s ease;
-        }
+      .thrift:hover {
+        color: red;
+      }
 
-        .thrift:hover {
-            color: red;
-        }
+      .nepal:hover {
+        color: rgb(63, 63, 235);
+      }
 
-        .nepal:hover {
-            color: rgb(63, 63, 235)
-        }
+      .btn,
+      .login-button,
+      .signup-button {
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #3c6dcf;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-        .btn,
-        .login-button,
-        .signup-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #3c6dcf;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            float: right;
-            margin-top: 40px;
-        }
+      .btn {
+        width: 105px;
+        height: 30px;
+        padding: 10px;
+      }
 
-        .btn {
+      .signup-button {
+        height: 45px;
+        width: 100px;
+      }
 
-            width: 170px;
-            height: 50px;
-            margin-right: 25%;
-        }
+      .signup-button:hover {
+        background-color: #45a049;
+      }
 
-        .signup-button {
-            height: 45px;
-            margin-right: 20px;
-        }
+      .btn:hover {
+        background-color: #45a049;
+      }
 
-        .signup-button:hover {
-            background-color: #45a049;
-        }
+      .login-button {
+        height: 45px;
+        width: 100px;
+        margin-right: 20px;
+      }
 
-        .btn:hover {
-            background-color: #45a049;
-        }
+      .navbar {
+        width: 97vw;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px ;
+        background-color: rgb(35, 33, 33);
+        position: fixed;
+      }
 
-        .login-button {
-            height: 45px;
-            margin-right: 20px;
-        }
+      .login-button:hover {
+        background-color: #45a049;
+      }
 
-        .navbar {
-            width: 100%;
-            height: 130px;
-            background-color: rgb(35, 33, 33);
-            position: sticky;
+      .search-box {
+        display: flex;
+        align-items: center;
+      }
 
-        }
+      .search-field {
+        padding: 15px;
+        border: 0px solid #ccc;
+        border-radius: 30px;
+        margin-left: 70px;
+        margin-top: 20%;
+        width: 1000px;
+        height: 40px;
+        font-size: 24px;
+      }
 
-        .login-button:hover {
-            background-color: #45a049;
-        }
+      .search-button {
+        padding: 17px 50px;
+        font-size: 18px;
+        color: white;
+        background-color: #3c6dcf;
+        border: none;
+        border-radius: 29px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-left: -164px;
+        margin-top: 20%;
+      }
 
+      .search-button:hover {
+        background-color: #45a049;
+      }
 
-        .search-box {
-            display: flex;
-            align-items: center;
-        }
+      details[data-popover] > summary:focus {
+        outline: none;
+      }
 
-        .search-field {
-            padding: 15px;
-            border: 0px solid #ccc;
-            border-radius: 30px;
-            margin-left: 70px;
-            margin-top: 17%;
-            width: 1000px;
-            height: 40px;
-            font-size: 24px;
+      details[data-popover] > summary::-webkit-details-marker {
+        display: none;
+      }
 
+      details[data-popover] > summary {
+        list-style: none;
+      }
 
-        }
+      details[data-popover] > summary {
+        list-style: none;
+        text-decoration: underline dotted teal;
+      }
 
-        .search-button {
-            padding: 17px 50px;
-            font-size: 18px;
-            color: white;
-            background-color: #3c6dcf;
-            border: none;
-            border-radius: 29px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-left: -164px;
-            margin-top: 17%;
-        }
+      details[data-popover] {
+        position: relative;
+      }
 
-        .search-button:hover {
-            background-color: #45a049;
-        }
+      details[data-popover] > summary + * {
+        position: absolute;
+        right: -650px;
+        top: 100px;
+      }
+
+      .pop {
+        z-index: 100;
+      }
+
+      .pop {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        margin-top: 6%;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        color: rgb(247, 187, 235);
+        background-color: rgb(120, 50, 120);
+      }
+
+      .po {
+        margin-bottom: 20px;
+        text-align: center;
+        font-family: "Gill Sans";
+        font-size: 40px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+        font-size: 20px;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: larger;
+      }
+
+      form input[type="text"],
+      form input[type="number"],
+      form textarea,
+      form select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: larger;
+      }
+
+      form button[type="submit"] {
+        background-color: #bb1ccc;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 25%;
+        font-size: 25px;
+      }
+
+      form button[type="submit"]:hover {
+        background-color: #1d75c7;
+      }
+
+      .form-group #priceType option {
+        font-size: 30px;
+      }
+      .form-group #category option {
+        font-size: 30px;
+      }
+      /* .form-group label + input[type="file"] {
+    font-size: 20px;
+    } */
+      .form-group input[type="file"] {
+        font-size: 25px;
+      }
+
+      form::placeholder {
+        font-size: 16px; /* Adjust the font size as needed */
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <nav class="navbar">
-
-        <div class=" icon">
-            <h2 class="logo">
-                <span class="thrift">Thrift</span>
-                <span class="nepal">Nepal</span>
-            </h2>
-        </div>
-      <a href="{% url 'login' %}">
-        <button class="login-button">Login</button>
-    </a>
-    
-        
-         <button class="signup-button">Sign up</button>
-         
-        <div class=" post">
-            <a href="{%url 'form' %}">
-                <button class="btn"> Post for free</button>
-            </a>
-
+        <div class="logo">
+          <span class="thrift">Thrift</span>
+          <span class="nepal">Nepal</span>
         </div>
 
 
+      <details class="post" data-popover="down">
+        <summary class="btn">Post for free</summary>
+        <div class="pop">
+          <h1 class="po">Post Item</h1>
+          <form id="postItemForm">
+            <div class="form-group">
+              <label for="productName">Product Name:</label>
+              <input type="text" id="productName" name="productName" required />
+            </div>
 
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea id="description" name="description" required></textarea>
+            </div>
 
+            <div class="form-group">
+              <label for="price">Price NRS:</label>
+              <input type="number" id="price" name="price" required />
+            </div>
+
+            <div class="phone-number">
+              <label for="phonenum" style="font-size: 25px"
+                >Phone Number:</label
+              >
+              <input type="number" id="phonenum" required />
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+              <label for="location">Location:</label>
+              <input type="text" id="location" name="location" required />
+            </div>
+
+            <div class="form-group">
+              <label for="category">Category:</label>
+              <select id="category" name="category" required>
+                <option value="" selected disabled>Select category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Books">Books</option>
+                <option>others</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="image">Upload Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image"
+                required
+              />
+            </div>
+
+            <button type="submit">Post Item</button>
+          </form>
+        </div>
+      </details>
+
+        <div class="logsign">
+          <a href="{% url 'login' %}">
+            <button class="login-button">Login</button>
+          </a>
+          <a href="{% url 'signup'%}">
+            <button class="signup-button">Sign up</button>
+          </a>
+        </div>
     </nav>
+    
     <div class="main">
-        <div class="search-box">
-            <input type="text" placeholder="Search..." class="search-field">
-            <button class="search-button">Search</button>
-        </div>
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="Search for Product"
+          class="search-field"
+        />
+        <button class="search-button">Search</button>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
