@@ -10,13 +10,14 @@
             padding: 0px;
             box-sizing: border-box;
         }
+        
         .container{
             display: flex;
             gap: 100px;
+            background-color: rgb(193, 119, 222);
+           
         }
-        .photo{
-            
-        }
+       
         .main{
             display: flex;
             flex-direction: column;
@@ -58,18 +59,34 @@
             font-size: 20px;
         }
         button{
-            width: 400px;
+            width: 200px;
             font-size: 20px;
             background-color: black;
             color: white;
             border-radius: 10px;
-            height: 35px;
-
+            height: 50px;
+            margin-left: 270px;
+            margin-top: 50px;
             
         }
-        .sign{
-            font-size: 20px;
+        .check input[type="checkbox"] {
+        width: 20px; 
+        height: 20px; 
+        
+}
+
+        .check label {
+            font-size: 30px;
         }
+
+        .sign{
+            font-size: 30px;
+
+        }
+        .sign a{
+            color: black;
+        }
+
         .buttn{
             display: flex;
             flex-direction: column;
@@ -81,9 +98,10 @@
 </head>
 <body>
     {% load static  %}
+
     <div class="container">
         <div class="photo">
-            <img src="{% static 'one.png' %}" alt="" height="1150px" width="1000px" >
+            <img src="{% static 'girl.jpeg' %}" alt="" height="1150px" width="1000px" >
         </div>
         <div class="main">
             <div class="title">
@@ -107,7 +125,7 @@
                 <label for="repassword">Re-Password</label>
                 <input type="repassword" name="repassword" id="repassword">
                 <button >Signup</button>
-            </form>
+            </form> 
             <div class="buttn">
                 <div class="check">
                     <input type="checkbox" name="remember" id="remember">
@@ -121,5 +139,6 @@
             
         </div>
     </div>
+
 </body>
 </html>
