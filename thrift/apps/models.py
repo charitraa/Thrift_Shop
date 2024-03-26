@@ -18,6 +18,6 @@ class Product(models.Model):
     Description = models.TextField()
     Location = models.TextField()
     Phone_Number = models.IntegerField()
-
+    category = models.CharField(max_length=200,default='')
     def __str__(self):
         return self.Product_Name

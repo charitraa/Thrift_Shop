@@ -130,10 +130,11 @@
 </head>
 
 <body>
-
+   
     <div class="container">
         <h1 class="po">Post Item</h1>
-        <form id="postItemForm" >
+        <form id="postItemForm" action="{% url 'form' %}" method="post">
+            {% csrf_token %}
             <div class="input-container">
                 <div class="form-group">
                     <label for="productName">Product Name:</label>
@@ -165,7 +166,7 @@
 
                 <div class="phone">
                     <label for="phonenum">Phone Number:</label>
-                    <input type="number" id="phonenum" required style="width:90%">
+                    <input type="number" name="phone" id="phonenum" required style="width:90%">
                 </div>
             </div>
 

@@ -1,176 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {%load static%}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
+    <script src="https://kit.fontawesome.com/49b6b027f2.js" crossorigin="anonymous"></script>
+    {% load static %}
     <style>
+      
       * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
-
-      .main {
-        width: 100%;
-        background: url("{% static 'background.jpg' %}");
-        background-size: cover;
-        height: 108.5vh;
-        transform: translateY(-20vh);
-        margin-top: 6%;
-        position: absolute;
-        z-index: -1;
-      }
-
-      span {
-        color: white;
-        font-size: 30px;
-        font-weight: bold;
-        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-          sans-serif;
-        cursor: pointer;
-      }
-
-      .logo {
-        color: white;
-        transition: color 0.3s ease;
-      }
-
-      .thrift:hover {
-        color: red;
-      }
-
-      .nepal:hover {
-        color: rgb(63, 63, 235);
-      }
-
-      .btn,
-      .login-button,
-      .signup-button {
-        font-size: 16px;
-        font-weight: bold;
-        color: #fff;
-        background-color: #3c6dcf;
-        border: none;
+      .card-container {
+        max-width: 350px;
+        border: 1px solid #ffffff;
         border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-      .btn {
-        width: 105px;
-        height: 30px;
-        padding: 10px;
-      }
+    .card-image img {
+        width: 100%; 
+        border-radius: 5px 5px 0 0;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
 
-      .signup-button {
-        height: 45px;
-        width: 100px;
-      }
+    .card-image:hover img {
+        transform: scale(1.05);
+    }
 
-      .signup-button:hover {
-        background-color: #45a049;
-      }
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
 
-      .btn:hover {
-        background-color: #45a049;
-      }
-
-      .login-button {
-        height: 45px;
-        width: 100px;
-        margin-right: 20px;
-      }
-
-      .navbar {
-        width: 97vw;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 30px ;
-        background-color: rgb(35, 33, 33);
-        position: fixed;
-      }
-
-      .login-button:hover {
-        background-color: #45a049;
-      }
-
-      .search-box {
-        display: flex;
-        align-items: center;
-      }
-
-      .search-field {
-        padding: 15px;
-        border: 0px solid #ccc;
-        border-radius: 30px;
-        margin-left: 70px;
-        margin-top: 20%;
-        width: 1000px;
-        height: 40px;
-        font-size: 24px;
-      }
-
-      .search-button {
-        padding: 17px 50px;
+    .card-name {
         font-size: 18px;
+        margin-top: -10px; 
+    }
+
+    .card-price {
+        font-size: 32px;
+        color: #007bff;
+        margin-top: -10px;
+    }
+
+    .card-desc {
+        font-size: 17px;
+        margin-top: -15px; 
+        overflow: hidden;
+        max-height: 100px; 
+        transition: max-height 0.3s ease; 
+        
+    }
+
+    .read-more {
+        color: blue;
+        cursor: pointer;
+    }
+
+    .btn-add {
+        margin-top: 20px; 
+        background-color: #007bff;
         color: white;
-        background-color: #3c6dcf;
         border: none;
-        border-radius: 29px;
+        padding: 10px 20px;
+        border-radius: 20px;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        margin-left: -164px;
-        margin-top: 20%;
-      }
+        width: 100%; 
+        font-size: 19px;
+        font-weight: bold;
+    }
 
-      .search-button:hover {
-        background-color: #45a049;
-      }
+    .btn-add:hover {
+        background-color: #0056b3;
+    }
 
-      details[data-popover] > summary:focus {
-        outline: none;
-      }
-
-      details[data-popover] > summary::-webkit-details-marker {
-        display: none;
-      }
-
-      details[data-popover] > summary {
-        list-style: none;
-      }
-
-      details[data-popover] > summary {
-        list-style: none;
-        text-decoration: underline dotted teal;
-      }
-
-      details[data-popover] {
-        position: relative;
-      }
-
-      details[data-popover] > summary + * {
-        position: absolute;
-        right: -650px;
-        top: 100px;
-      }
-
-      .pop {
-        z-index: 100;
-      }
-
-      .pop {
-        max-width: 600px;
-        margin: 0 auto;
+    @media screen and (max-width: 600px) {
+        .card-container {
+            max-width: 90%;
+        }
+    }
+      .container {
+        max-width: 700px;
         background-color: #fff;
         padding: 20px;
         margin-top: 6%;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        color: rgb(247, 187, 235);
-        background-color: rgb(120, 50, 120);
+      }
+
+      .container .form-group,
+      .container input,
+      .container select,
+      .container textarea {
+        margin-left: 10px;
       }
 
       .po {
@@ -188,14 +118,19 @@
       form label {
         display: block;
         margin-bottom: 10px;
+        color: black;
         font-size: larger;
+      }
+
+      .phone {
+        font-size: 20px;
       }
 
       form input[type="text"],
       form input[type="number"],
       form textarea,
       form select {
-        width: 100%;
+        width: 90%;
         padding: 10px;
         margin-top: 5px;
         margin-bottom: 10px;
@@ -206,7 +141,7 @@
       }
 
       form button[type="submit"] {
-        background-color: #bb1ccc;
+        background-color: #4bb2c1;
         color: white;
         padding: 12px 20px;
         border: none;
@@ -214,47 +149,210 @@
         cursor: pointer;
         width: 25%;
         font-size: 25px;
+        margin-left: 420px;
+        margin-top: 20px;
       }
 
       form button[type="submit"]:hover {
         background-color: #1d75c7;
       }
 
-      .form-group #priceType option {
-        font-size: 30px;
-      }
-      .form-group #category option {
-        font-size: 30px;
-      }
-      /* .form-group label + input[type="file"] {
-    font-size: 20px;
-    } */
-      .form-group input[type="file"] {
-        font-size: 25px;
+      #category {
+        width: 100%;
       }
 
-      form::placeholder {
-        font-size: 16px; /* Adjust the font size as needed */
+      #category option {
+        font-size: 20px;
+      }
+
+      form input[type="file"] {
+        font-size: 25px;
+        margin-top: 20px;
+      }
+
+      .input-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .input-container input,
+      .input-container label {
+        width: 70%;
+      }
+      input::placeholder {
+        font-size: 16px;
+      }
+      details[data-popover] > summary:focus {
+        outline: none;
+      }
+
+      details[data-popover] > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      details[data-popover] > summary {
+        list-style: none;
+      }
+
+      details[data-popover] > summary {
+        list-style: none;
+        text-decoration: underline dotted teal;
+      }
+
+      details[data-popover] > summary + * {
+        position: absolute;
+        top: 0px;
+        
+      }
+
+      .nav-main {
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px;
+        height: 100px;
+      }
+
+      .logo{
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .thrift:hover{
+        color: red;
+      }
+      .nepal:hover{
+        color: blue;
+      }
+      .btn{
+        font-size: 20px;
+        background-color: #1d75c7;
+        height: 55px;
+        padding: 10px;
+        width: 150px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .login-button,.signup-button{
+        height: 50px;
+        width: 100px;
+        background-color: #1d75c7;
+        font-size: 20px;
+        font-weight: 500;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .login-button{
+        margin-right: 10px;
+      }
+      .login-button:hover,.signup-button:hover,.btn:hover{
+        background-color: green;
+      }
+      .background{
+        height: 1105px;
+        background-image: url("{% static 'background.jpg' %}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        padding: 50px;
+
+      }
+      .background input{
+        height: 70px;
+        width: 1000px;
+        font-size: 30px;
+        border-radius: 30px;
+        padding: 20px;
+        border: 1px solid #1d75c7;
+        margin-bottom: 200px;
+      }
+      .background input:focus{
+        border: 2px solid green;
+      }
+      .background input::placeholder{
+        font-size: 25px;
+      }
+      .search-button{
+        margin:0 0 200px -208px ;
+        height: 55px;
+        width: 200px;
+        background-color: #1d75c7;
+        color: #fff;
+        border-radius: 30px;
+        font-size: 20px;
+        font-weight: 900;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .search-button:hover{
+        background-color: green;
+      }
+      .product-conatiner{
+        height: 1200px;
+        padding: 50px;
+      }
+      .card-conatiner{
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+        {% comment %} box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); {% endcomment %}
+      }
+      .next i, .prev i{
+        font-size: 50px;
+        cursor: pointer;
+      }
+      .card-main-conatiner{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: space-between;
+      }
+      .name h1{
+        font-size: 50px;
+      }
+      .card{
+        display: flex;
+        gap: 30px;
       }
     </style>
   </head>
-
   <body>
-    <nav class="navbar">
-        <div class="logo">
-          <span class="thrift">Thrift</span>
-          <span class="nepal">Nepal</span>
-        </div>
-
+    <div class="nav-main">
+      <div class="logo">
+        <span class="thrift">Thrift</span>
+        <span class="nepal">Nepal</span>
+      </div>
 
       <details class="post" data-popover="down">
         <summary class="btn">Post for free</summary>
-        <div class="pop">
+        <div class="container">
           <h1 class="po">Post Item</h1>
-          <form id="postItemForm">
-            <div class="form-group">
-              <label for="productName">Product Name:</label>
-              <input type="text" id="productName" name="productName" required />
+          <form id="postItemForm" action="{% url 'form' %}" method="post">
+            {% csrf_token %}
+            <div class="input-container">
+              <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input
+                  type="text"
+                  id="productName"
+                  name="productName"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="price">Price NRS:</label>
+                <input type="number" id="price" name="price" required />
+              </div>
             </div>
 
             <div class="form-group">
@@ -262,33 +360,39 @@
               <textarea id="description" name="description" required></textarea>
             </div>
 
-            <div class="form-group">
-              <label for="price">Price NRS:</label>
-              <input type="number" id="price" name="price" required />
+            <div class="input-container">
+              <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                  <option value="" selected disabled>Select category</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Clothing">Clothing</option>
+                  <option value="Books">Books</option>
+                  <option>others</option>
+                </select>
+              </div>
+
+              <div class="phone">
+                <label for="phonenum">Phone Number:</label>
+                <input
+                  type="text"
+                  name="phone"
+                  id="phonenum"
+                  required
+                  style="width: 90%"
+                />
+              </div>
             </div>
 
-            <div class="phone-number">
-              <label for="phonenum" style="font-size: 25px"
-                >Phone Number:</label
-              >
-              <input type="number" id="phonenum" required />
-            </div>
-            <br />
-            <br />
             <div class="form-group">
               <label for="location">Location:</label>
-              <input type="text" id="location" name="location" required />
-            </div>
-
-            <div class="form-group">
-              <label for="category">Category:</label>
-              <select id="category" name="category" required>
-                <option value="" selected disabled>Select category</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Books">Books</option>
-                <option>others</option>
-              </select>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                required
+                style="width: 95%"
+              />
             </div>
 
             <div class="form-group">
@@ -307,18 +411,17 @@
         </div>
       </details>
 
-        <div class="logsign">
-          <a href="{% url 'login' %}">
-            <button class="login-button">Login</button>
-          </a>
-          <a href="{% url 'signup'%}">
-            <button class="signup-button">Sign up</button>
-          </a>
-        </div>
-    </nav>
-    
-    <div class="main">
-      <div class="search-box">
+      <div class="logsign">
+        <a href="{% url 'login' %}">
+          <button class="login-button">Login</button>
+        </a>
+        <a href="{% url 'signup'%}">
+          <button class="signup-button">Sign up</button>
+        </a>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="background">
         <input
           type="text"
           placeholder="Search for Product"
@@ -327,5 +430,180 @@
         <button class="search-button">Search</button>
       </div>
     </div>
+
+
+    <div class="product-conatiner">
+      <div class="card-conatiner">
+
+        <div class="name">
+          <h1>Products</h1>
+        </div>
+
+        <div class="card-main-conatiner">
+          <div class="next">
+            <i class="fa-solid fa-backward"></i>
+          </div>
+            <div class="card">
+
+              <div class="card-container">
+                {%load static%}
+                <div class="card-image">
+                  <img src="{%static 'girl.jpeg'%}" alt="picture" />
+                </div>
+                <div class="card-content">
+                  <div class="card-name">
+                    <h2>Books</h2>
+                  </div>
+          
+                  <div class="card-price">
+                    <h3>NPR 820</h3>
+                  </div>
+          
+                  <div class="card-desc" id="description">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                      vestibulum est vitae dui consectetur, eu mattis nulla finibus. Morbi
+                      suscipit lacus non eros congue, non semper dolor interdum. Duis
+                      vulputate nisi vel turpis fermentum, ac finibus libero tincidunt.
+                      Nulla facilisi. Suspendisse potenti. Sed sit amet risus a augue
+                      posuere placerat. Fusce et lectus rutrum, congue lacus vel, maximus
+                      tortor. Integer varius ultrices nisl ac dapibus. Mauris semper enim
+                      at lorem posuere, nec dignissim mauris dapibus. Curabitur lacinia
+                      ante vitae odio facilisis, vel aliquam lectus efficitur. Proin non
+                      enim quis eros malesuada consectetur. Duis id lacus euismod, pretium
+                      risus nec, posuere nunc. Nam ac felis feugiat, tempus arcu vel,
+                      dapibus neque. Curabitur ac molestie nisl.
+                    </p>
+                  </div>
+                  <p class="read-more" onclick="Description()">Read more</p>
+                  <button class="btn-add">Add to Cart</button>
+                </div>
+              </div>
+  
+              <div class="card-container">
+                {%load static%}
+                <div class="card-image">
+                  <img src="{%static 'girl.jpeg'%}" alt="picture" />
+                </div>
+                <div class="card-content">
+                  <div class="card-name">
+                    <h2>Books</h2>
+                  </div>
+          
+                  <div class="card-price">
+                    <h3>NPR 820</h3>
+                  </div>
+          
+                  <div class="card-desc" id="description">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                      vestibulum est vitae dui consectetur, eu mattis nulla finibus. Morbi
+                      suscipit lacus non eros congue, non semper dolor interdum. Duis
+                      vulputate nisi vel turpis fermentum, ac finibus libero tincidunt.
+                      Nulla facilisi. Suspendisse potenti. Sed sit amet risus a augue
+                      posuere placerat. Fusce et lectus rutrum, congue lacus vel, maximus
+                      tortor. Integer varius ultrices nisl ac dapibus. Mauris semper enim
+                      at lorem posuere, nec dignissim mauris dapibus. Curabitur lacinia
+                      ante vitae odio facilisis, vel aliquam lectus efficitur. Proin non
+                      enim quis eros malesuada consectetur. Duis id lacus euismod, pretium
+                      risus nec, posuere nunc. Nam ac felis feugiat, tempus arcu vel,
+                      dapibus neque. Curabitur ac molestie nisl.
+                    </p>
+                  </div>
+                  <p class="read-more" onclick="Description()">Read more</p>
+                  <button class="btn-add">Add to Cart</button>
+                </div>
+              </div>
+
+              <div class="card-container">
+                {%load static%}
+                <div class="card-image">
+                  <img src="{%static 'girl.jpeg'%}" alt="picture" />
+                </div>
+                <div class="card-content">
+                  <div class="card-name">
+                    <h2>Books</h2>
+                  </div>
+          
+                  <div class="card-price">
+                    <h3>NPR 820</h3>
+                  </div>
+          
+                  <div class="card-desc" id="description">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                      vestibulum est vitae dui consectetur, eu mattis nulla finibus. Morbi
+                      suscipit lacus non eros congue, non semper dolor interdum. Duis
+                      vulputate nisi vel turpis fermentum, ac finibus libero tincidunt.
+                      Nulla facilisi. Suspendisse potenti. Sed sit amet risus a augue
+                      posuere placerat. Fusce et lectus rutrum, congue lacus vel, maximus
+                      tortor. Integer varius ultrices nisl ac dapibus. Mauris semper enim
+                      at lorem posuere, nec dignissim mauris dapibus. Curabitur lacinia
+                      ante vitae odio facilisis, vel aliquam lectus efficitur. Proin non
+                      enim quis eros malesuada consectetur. Duis id lacus euismod, pretium
+                      risus nec, posuere nunc. Nam ac felis feugiat, tempus arcu vel,
+                      dapibus neque. Curabitur ac molestie nisl.
+                    </p>
+                  </div>
+                  <p class="read-more" onclick="Description()">Read more</p>
+                  <button class="btn-add">Add to Cart</button>
+                </div>
+              </div>
+  
+              <div class="card-container">
+                {%load static%}
+                <div class="card-image">
+                  <img src="{%static 'girl.jpeg'%}" alt="picture" />
+                </div>
+                <div class="card-content">
+                  <div class="card-name">
+                    <h2>Books</h2>
+                  </div>
+          
+                  <div class="card-price">
+                    <h3>NPR 820</h3>
+                  </div>
+          
+                  <div class="card-desc" id="description">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                      vestibulum est vitae dui consectetur, eu mattis nulla finibus. Morbi
+                      suscipit lacus non eros congue, non semper dolor interdum. Duis
+                      vulputate nisi vel turpis fermentum, ac finibus libero tincidunt.
+                      Nulla facilisi. Suspendisse potenti. Sed sit amet risus a augue
+                      posuere placerat. Fusce et lectus rutrum, congue lacus vel, maximus
+                      tortor. Integer varius ultrices nisl ac dapibus. Mauris semper enim
+                      at lorem posuere, nec dignissim mauris dapibus. Curabitur lacinia
+                      ante vitae odio facilisis, vel aliquam lectus efficitur. Proin non
+                      enim quis eros malesuada consectetur. Duis id lacus euismod, pretium
+                      risus nec, posuere nunc. Nam ac felis feugiat, tempus arcu vel,
+                      dapibus neque. Curabitur ac molestie nisl.
+                    </p>
+                  </div>
+                  <p class="read-more" onclick="Description()">Read more</p>
+                  <button class="btn-add">Add to Cart</button>
+                </div>
+              </div>
+              
+            </div>
+
+          <div class="prev">
+            <i class="fa-solid fa-forward"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script>
+      function Description() {
+        var desc = document.getElementById("description");
+        if (desc.style.maxHeight) {
+          desc.style.maxHeight = null;
+        } else {
+          desc.style.maxHeight = desc.scrollHeight + "px";
+        }
+      }
+    </script>
   </body>
 </html>

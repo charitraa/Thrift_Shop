@@ -47,7 +47,7 @@
             border-radius: 20px;
             border: hidden;
             width: 700px;
-            padding: 20px;
+            padding-left: 20px;
             height: 40px;
             
         }
@@ -92,7 +92,10 @@
             flex-direction: column;
             gap: 10px;
         }
-
+        .signbtn{
+            border: none;
+            cursor: pointer;
+        }
     </style>
 
 </head>
@@ -111,20 +114,20 @@
             <form action="{% url 'signup'%}" method="POST">
                 {% csrf_token %}
                 <label for="username">Username</label>
-                <input type="text"  name="username" id="username">
+                <input type="text"  name="username" id="username" required>
                 <label for="phone">Phone Number</label>
-                <input type="text"  name="phone" id="phone">
+                <input type="text"  name="phone" id="phone" required>         
                 <label for="gender">Gender</label>
-                <input type="gender" name="gender" id="gender">
+                <input type="gender" name="gender" id="gender" required>
                 <label for="dob">Date of Birth</label>
-                <input type="date" name="dob" id="dob">
+                <input type="date" name="dob" id="dob" required>
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
                 <label for="repassword">Re-Password</label>
-                <input type="repassword" name="repassword" id="repassword">
-                <button >Signup</button>
+                <input type="repassword" name="repassword" id="repassword" required>
+                <button class="signbtn">Signup</button>
             </form> 
             <div class="buttn">
                 <div class="check">
