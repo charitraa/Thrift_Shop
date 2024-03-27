@@ -79,9 +79,9 @@ def login(request):
             return redirect('login')
     return render (request , "loginin.html")
 
-def card(request):
-    return render (request , "card.html")
 
 def incard(request):
     return render (request , "incard.html")
 
+def CustomerPage(request):
+    return render(request,"CustomerPage.html")
