@@ -19,7 +19,7 @@ def signup(request):
             return redirect('signup')
         else:
             if password == repassword:
-                newuser = Customer.objects.create(Username=uname,Email=email,password=password,Phone_Number=phone, Gender=gender ,Date_of_birth=dob)
+                newuser = Customer.objects.create(Username=uname,Email=email,password=password,phone_Number=phone, Gender=gender ,Date_of_birth=dob)
                 if newuser:
                     return redirect('login')
                 
@@ -36,6 +36,7 @@ def HomePage(request):
         nSlides = n//4 + ceil((n/4)-(n//4))
         allProds.append([prod, range(1,nSlides), nSlides])
     params =  {'allProds':allProds}
+    print (params)
     return render (request , "HomePage.html", params)
 def Home(request):
     return render (request , "Home.html")

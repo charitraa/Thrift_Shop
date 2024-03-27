@@ -135,14 +135,15 @@
 
         .box .button {
 
-            cursor:default;
+            cursor: default;
             transition: background-color 0.3s ease;
         }
 
         .button:hover {
             background-color: aquamarine;
         }
-        .register a{
+
+        .register a {
             color: white;
         }
     </style>
@@ -155,17 +156,19 @@
             <img src="{% static 'login.jpg' %}" alt="Picture" class="logo">
         </div>
         <div class="box">
+
             <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
                 <h1>Log In</h1>
                 <div class="inputbox">
                     <label>
-                        <input type="text" placeholder="Username" required>
+                        <input type="text" name= "username" placeholder="Username" required>
                         <i class='bx bxs-user'></i>
                     </label>
                 </div>
                 <div class="inputbox">
                     <label>
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" name="password" placeholder="Password" required>
                         <i class='bx bxs-lock-alt'></i>
                     </label>
                 </div>
