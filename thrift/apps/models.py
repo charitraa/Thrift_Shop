@@ -19,6 +19,6 @@ class Product(models.Model):
     Location = models.TextField()
     Phone_Number = models.IntegerField()
     category = models.CharField(max_length=200,default='')
-    image = models.ImageField(upload_to='shop/images',default='')
+    image = models.ImageField(upload_to='media/',default='')
     def __str__(self):
         return self.Product_Name

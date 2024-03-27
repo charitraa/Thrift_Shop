@@ -391,7 +391,7 @@
         <summary class="btn">Post for free</summary>
         <div class="container-form">
           <h1 class="po">Post Item</h1>
-          <form id="postItemForm" action="{% url 'form' %}" method="post">
+          <form id="postItemForm" action="{% url 'form' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="input-container">
               <div class="form-group">
@@ -453,7 +453,7 @@
             <div class="form-group">
               <label for="image">Upload Image:</label>
               <input
-                type="file"
+                type=" file"
                 id="image"
                 name="image"
                 accept="image"
