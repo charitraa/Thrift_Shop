@@ -14,80 +14,7 @@
         padding: 0;
         box-sizing: border-box;
       }
-      .card-container {
-        max-width: 350px;
-        border: 1px solid #ffffff;
-        border-radius: 5px;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-image img {
-        width: 100%; 
-        border-radius: 5px 5px 0 0;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .card-image:hover img {
-        transform: scale(1.05);
-    }
-
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .card-name {
-        font-size: 18px;
-        margin-top: -10px; 
-    }
-
-    .card-price {
-        font-size: 32px;
-        color: #007bff;
-        margin-top: -10px;
-    }
-
-    .card-desc {
-        font-size: 17px;
-        margin-top: -15px; 
-        overflow: hidden;
-        max-height: 100px; 
-        transition: max-height 0.3s ease; 
-        
-    }
-
-    .read-more {
-        color: blue;
-        cursor: pointer;
-    }
-
-    .btn-add {
-        margin-top: 20px; 
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        width: 100%; 
-        font-size: 19px;
-        font-weight: bold;
-    }
-
-    .btn-add:hover {
-        background-color: #0056b3;
-    }
-
-    @media screen and (max-width: 600px) {
-        .card-container {
-            max-width: 90%;
-        }
-    }
+      
       .container-form {
         max-width: 700px;
         background-color: #fff;
@@ -299,38 +226,6 @@
       .search-button:hover{
         background-color: green;
       }
-      .product-conatiner{
-        height: 1200px;
-        padding: 50px;
-      }
-      .card-conatiner{
-        display: flex;
-        flex-direction: column;
-        gap:30px;
-     
-      }
-      .next i, .prev i{
-        font-size: 50px;
-        cursor: pointer;
-      }
-      .card-main-conatiner{
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        scroll-behavior: smooth;
-        gap: 20px;
-        justify-content: space-between;
-      }
-      .name h1{
-        font-size: 50px;
-      }
-      .card{
-        display: flex;
-        width: 1000px;
-        gap: 30px;
-        overflow: hidden;
-      }
       .col-md-3 {
         display: inline-block;
         margin-left: -4px;
@@ -362,13 +257,13 @@
         .carousel-control-next {
         top:auto;
         bottom:auto;
-        padding-top:222px
+        padding-top:128px;
         }
         
         body .no-padding {
         padding-left: 0;
         padding-right: 0;
-        max-width: 1179px;
+        max-width: 1800px;
         }
         
         .carousel-indicators .active {
@@ -378,6 +273,13 @@
         body .carousel-indicators {
         bottom: 0;
         }
+        .content{
+          padding: 0 200px;
+        }
+        .my-5{
+          font-size: 30px;
+        }
+        
     </style>
   </head>
   <body>
@@ -391,7 +293,7 @@
         <summary class="btn">Post for free</summary>
         <div class="container-form">
           <h1 class="po">Post Item</h1>
-          <form id="postItemForm" action="{% url 'form' %}" method="post" enctype="multipart/form-data">
+          <form id="postItemForm" action="{% url 'Home' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="input-container">
               <div class="form-group">
@@ -406,7 +308,7 @@
 
               <div class="form-group">
                 <label for="price">Price NRS:</label>
-                <input type="number" id="price" name="price" required />
+                <input type="text" id="price" name="price" required />
               </div>
             </div>
 
@@ -421,9 +323,10 @@
                 <select id="category" name="category" required>
                   <option value="" selected disabled>Select category</option>
                   <option value="Electronics">Electronics</option>
+                  <option value="Furnitures">Furnitures</option>
                   <option value="Clothing">Clothing</option>
                   <option value="Books">Books</option>
-                  <option>others</option>
+                  <option value="others">others</option>
                 </select>
               </div>
 
@@ -451,15 +354,16 @@
             </div>
 
             <div class="form-group">
-              <label for="image">Upload Image:</label>
+              <label for="images">Upload Image:</label>
               <input
-                type=" file"
-                id="image"
-                name="image"
-                accept="image"
+                type="file"
+                id="images"
+                name="images"
                 required
               />
             </div>
+            <div class="e" style="font-size: 20px; color: red;">{{error}}</div>
+            
 
             <button type="submit">Post Item</button>
           </form>
@@ -487,7 +391,7 @@
     </div>
 
 
-    <div class="container">
+    <div class="container-fluid content">
 
       {% for product, range, nSlides in allProds %}
       <h5 class="my-5">Flash Sale On {{product.0.category}} - Recommended Items</h5>
@@ -511,17 +415,16 @@
                   <div class="carousel-item active">
                       {% for i in product %}
                       <div class="col-xs-3 col-sm-3 col-md-3">
-                          <div class="card" style="width: 18rem;">
-                              <img src='' class="card-img-top" alt="...">
+                          <div class="card" style="width: 26rem;">
+                              <img src='/media/{{i.image}}' class="card-img-top" alt="...">
                               <div class="card-body">
-                                  <h5 class="card-title" id="namepr{{i.id}}">{{i.Product_Name}}</h5>
-                                  <h5 class="card-title" id="namepr{{i.id}}">Rs. {{i.Product_Price}}</h5>
-                                  <p class="card-text">{{i.Description}}</p>
-                                  <span id="divpr{{i.id}}" class="divpr">
+                                  <h2 class="card-title" id="namepr{{i.id}}">{{i.Product_Name}}</h2>
+                                  <h2 class="card-title" id="namepr{{i.id}}">Rs. {{i.Product_Price}}</h2>
+                                  <p class="card-text" style="font-size: 20px;">{{i.Description}}</p>
+                                  <span id="divpr{{i.id}}" class="divpr" style="margin-left: 35px;">
                                       <button id="pr{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
+                                      <button id="pr{{i.id}}" class="btn btn-primary cart">See more</button>
                                   </span>
-                                    <button id="pr{{i.id}}" class="btn btn-primary cart" style="margin-top: 10px;">See more</button>
-                                
                               </div>
                           </div>
                       </div>
