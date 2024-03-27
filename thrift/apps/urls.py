@@ -9,5 +9,7 @@ urlpatterns = [
     path('card/', views.card, name="card"),
     path('incard/',views.incard, name="incard"),
     path('form/',views.form, name="form"),
+    path('profile/',views.profile, name="profile"),
+
 ]
 
