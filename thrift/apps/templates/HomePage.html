@@ -183,6 +183,7 @@
       }
       .login-button:hover,.signup-button:hover,.btn:hover{
         background-color: green;
+        color: white;
       }
       .background{
         height: 1105px;
@@ -289,87 +290,12 @@
         <span class="nepal">Nepal</span>
       </div>
 
-      <details class="post" data-popover="down">
-        <summary class="btn">Post for free</summary>
-        <div class="container-form">
-          <h1 class="po">Post Item</h1>
-          <form id="postItemForm" action="{% url 'Home' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="input-container">
-              <div class="form-group">
-                <label for="productName">Product Name:</label>
-                <input
-                  type="text"
-                  id="productName"
-                  name="productName"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="price">Price NRS:</label>
-                <input type="text" id="price" name="price" required />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="description">Description:</label>
-              <textarea id="description" name="description" required></textarea>
-            </div>
-
-            <div class="input-container">
-              <div class="form-group">
-                <label for="category">Category:</label>
-                <select id="category" name="category" required>
-                  <option value="" selected disabled>Select category</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Furnitures">Furnitures</option>
-                  <option value="Clothing">Clothing</option>
-                  <option value="Books">Books</option>
-                  <option value="others">others</option>
-                </select>
-              </div>
-
-              <div class="phone">
-                <label for="phonenum">Phone Number:</label>
-                <input
-                  type="text"
-                  name="phone"
-                  id="phonenum"
-                  required
-                  style="width: 90%"
-                />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="location">Location:</label>
-              <input
-                type="text"
-                id="location"
-                name="location"
-                required
-                style="width: 95%"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="images">Upload Image:</label>
-              <input
-                type="file"
-                id="images"
-                name="images"
-                required
-              />
-            </div>
-            <div class="e" style="font-size: 20px; color: red;">{{error}}</div>
-            <div class="e" style="font-size: 20px; color: red;">{{errors}}</div>
-            
-
-            <button type="submit">Post Item</button>
-          </form>
-        </div>
-      </details>
+      <div class="post">
+        <a href="{% url 'signup'%}">
+          <summary class="btn">Post for free</summary>
+        </a>
+      </div>
+ 
 
       <div class="logsign">
         <a href="{% url 'login' %}">
