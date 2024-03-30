@@ -18,7 +18,8 @@
             border-radius: 50%;
             background-color: rgb(255, 255, 255);
             align-content: center;
-            margin-left: 50px
+            margin-left: 50px;
+            border: 2px solid black;
         }
 
         .box {
@@ -27,11 +28,11 @@
             align-items: center;
             margin: 50px auto;
             width: 60%;
-            background-color: rgb(225, 195, 226) ;
-            
+            background-color: rgb(255, 255, 255) ;
             color: white;
-            height: 680px;
+            height: 750px;
             margin-top: 170 px;
+            border: 1px solid black;
         }
 
 
@@ -43,7 +44,7 @@
             flex-direction: column;
             font-size: 30px;
             margin-top: 150px;
-
+            color: black;
         }
 
         label {
@@ -56,8 +57,9 @@
 
             margin-bottom: 70px;
             width: 500px;
-            padding: 18px;
-            border: 1px solid #ccc;
+            padding: 12px;
+            font-size: 24px;
+            border: 1px solid #868181;
             border-radius: 5px;
             box-sizing: border-box;
             margin-right: 100px;
@@ -74,9 +76,43 @@
         .line{
         width: 60%;
         height: 200px;
-        background-color:rgb(221, 221, 221);
+        background-color:rgb(72, 181, 235);
         margin-left: 458px;
         margin-bottom: -120px;
+        padding-top: 20px;
+        border: 2px solid black;
+    }
+    h1{
+        font-size: 70px;
+        color: white; 
+        display:block; margin-top: 10px;
+    }
+    .save{
+        position: absolute;
+        margin-left: 52%;
+        margin-top:28%;
+        background-color: #ff5e62;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 22px;
+        color: white;
+        border: none;
+    }
+
+    .cancel{
+        position: absolute;
+        margin-left: 38%;
+        margin-top:28%;
+        background-color: #ff5e62;
+        padding: 10px 20px; border-radius: 5px;
+        cursor: pointer;
+        font-size: 22px;
+        color: white;
+        border: none;
+        
+
+
     }
     </style>
    
@@ -84,7 +120,7 @@
 
 <body>
     <div class="line">
-    
+    <h1 style="text-align: center;">Profile</h1>
 
     </div>
     <div class="box">
@@ -92,11 +128,10 @@
             <div class="center">
             </div>
         </div>
-
         <form action="" method="POST">
             <div class="profile-pic"></div>
             <label for="username">Username :</label>
-            <label for="phone">Phone Number :</label>
+            <label for="phone">Phone number :</label>
             <label for="gender">Gender :</label>
             <label for="address">Address :</label>
             <label for="email">Email :</label>
@@ -108,6 +143,8 @@
             <input type="text" name="address" id="address">
             <input type="email" name="email" id="email">
         </div>
+        <button class="save">Save</button>
+        <button class="cancel">Cancel</button>
     </div>
 </body>
 
