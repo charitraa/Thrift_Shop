@@ -106,3 +106,6 @@ def incard(request):
 
 def CustomerPage(request):
     return render(request,"CustomerPage.html")
+
+def cart(request):
+    return render(request,"cartDetails.html")
