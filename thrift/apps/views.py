@@ -104,8 +104,6 @@ def login(request):
 def incard(request):
     return render (request , "incard.html")
 
-def CustomerPage(request):
-    return render(request,"CustomerPage.html")
 
-def cart(request):
-    return render(request,"cartDetails.html")
+def profile(request):
+    return render (request , "profile.html")

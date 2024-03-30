@@ -11,4 +11,9 @@ urlpatterns = [
     path('incard/',views.incard, name="incard"),
     path('customer/',views.CustomerPage, name="customer"),
     path('cart/',views.cart, name="cart"),
+    path('profile/',views.profile, name="profile"),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    
+
+
+
