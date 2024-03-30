@@ -107,3 +107,6 @@ def incard(request):
 
 def profile(request):
     return render (request , "profile.html")
+
+def cart(request):
+    return render (request , "cartDetails.html")
