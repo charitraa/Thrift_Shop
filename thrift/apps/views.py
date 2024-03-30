@@ -110,3 +110,7 @@ def profile(request):
 
 def cart(request):
     return render (request , "cartDetails.html")
+
+def CustomerPage(request):
+    return render (request , "cartDetails.html")
+
