@@ -2,20 +2,25 @@ from django.shortcuts import render , redirect
 from .models import Customer, Product
 from math import ceil
 from PIL import Image # type: ignore
-from io import BytesIO
 from django.core.exceptions import ValidationError
 
 def validate_image_width(image):
     # Open the image using PIL or Pillow
     img = Image.open(image)
     # Get the width and height of the image
-    width, height = img.size
-    if width != 400:
-        raise ValidationError("Image width must be 500 pixels.")
+    width, height = img.size,img.size
+    if width and height!= 400:
+        raise ValidationError("Image width and height must be 400 pixels.")
 
+def validate_description_length(description):
+    if len(description) > 50:
+        raise ValidationError("Description must be at most 50 characters long.")
+    
+def validate_phone_number_length(phone):
+    if len(phone)==10:
+        raise ValidationError("Phone Number must be equal to 10 Digits.")
 
 def signup(request):
-
     if request.method =='POST':
         uname = request.POST['username']
         dob = request.POST['dob']
@@ -47,6 +52,7 @@ def HomePage(request):
         nSlides = n//4 + ceil((n/4)-(n//4))
         allProds.append([prod, range(1,nSlides), nSlides])
         params =  {'allProds':allProds}
+
     if request.method =='POST':
         uname = request.POST['productName']
         Price = request.POST['price']
@@ -57,14 +63,30 @@ def HomePage(request):
         photo = request.FILES.get('images')
         if photo:
             try:
+                phone = int(phone)
+            except ValueError:
+                error_message = "Phone number must be an integer."
+                params =  {'allProds':allProds,'error':error_message}
+                return render(request, "HomePage.html", params)
+            try:
                 validate_image_width(photo)
             except ValidationError as e:
                 params =  {'allProds':allProds,'error':e}
-                return render(request, "HomePage.html",params)        
+                return render(request, "HomePage.html",params)
+            try:
+                validate_description_length(description)
+            except ValidationError as e:
+                params =  {'allProds':allProds,'error':e}
+                return render(request, "HomePage.html",params)  #
+            try:
+                validate_phone_number_length(phone)
+            except ValidationError as e:
+                params =  {'allProds':allProds,'error':e}
+                return render(request, "HomePage.html",params)
+
             newproduct = Product.objects.create(Product_Name=uname,Product_Price=Price,Description=description,Phone_Number=phone, Location=location ,category=category,image=photo)
         if newproduct:
             return redirect('Home')
-
     return render (request , "HomePage.html", params)
 
 def login(request):
@@ -78,7 +100,6 @@ def login(request):
         else:
             return redirect('login')
     return render (request , "loginin.html")
-
 
 def incard(request):
     return render (request , "incard.html")
