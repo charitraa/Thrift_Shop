@@ -1,8 +1,9 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect,HttpResponse
 from .models import Customer, Product
 from math import ceil
 from PIL import Image # type: ignore
 from django.core.exceptions import ValidationError
+from django.core.exceptions import ObjectDoesNotExist
 
 def validate_image_width(image):
     # Open the image using PIL or Pillow
@@ -103,9 +104,24 @@ def login(request):
             return redirect('login')
     return render (request , "loginin.html")
 
-def incard(request):
-    return render (request , "incard.html")
-
+def incard(request, product_id):
+    if product_id is not None:  # Check if product_id is provided
+        try:
+            product = Product.objects.get(pk=product_id)
+            # Assuming you have a serializer to serialize product details
+            serialized_product = {
+                'name': product.Product_Name,
+                'publish': product.Product_pub,
+                'price': product.Product_Price,
+                'desc': product.Description,
+                'location': product.Location,
+                'image': product.image
+            }
+            return render(request, "incard.html", {'serialized': serialized_product})
+        except Product.DoesNotExist:
+            return HttpResponse("Product not found")
+    else:
+        return HttpResponse("Product ID not provided in URL")
 
 def profile(request):
     return render (request , "profile.html")
@@ -161,4 +177,6 @@ def CustomerPage(request):
             return redirect('customer')
         
     return render (request , "CustomerPage.html",params)
+
+
 

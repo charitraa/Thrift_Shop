@@ -162,40 +162,20 @@
 </head>
     {%load static%}
 <div class="container">
+    
     <div class="left-side">
-        <h1>H-P EliteBook 640G9/640G9/650G9 Intel Core Series 12th Generation</h1>
-        <img src="{%static 'girl.jpeg'%}" alt="Product Image" class="product-image">
+        <h1>{{serialized.name}}</h1>
+        <img src="{{serialized.image.url}}" alt="Product Image" class="product-image">
     </div>
     <div class="right-side">
-        <p class="price">NPR 820</p>
+        <p class="price">RS.{{serialized.price}}</p>
         <hr>
 
 
         <div id="description" class="description">
-            <p>Description of the product goes here. Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Sed vestibulum est vitae dui
-                consectetur, eu mattis nulla finibus. Morbi suscipit lacus non eros congue, non semper dolor
-                interdum. Duis vulputate nisi vel turpis fermentum, ac finibus libero tincidunt. Nulla facilisi.
-                Suspendisse potenti. Sed sit amet risus a augue posuere placerat. Fusce et lectus rutrum, congue
-                lacus vel, maximus tortor. Integer varius ultrices nisl ac dapibus. Mauris semper enim at lorem
-                posuere, nec dignissim mauris dapibus. Curabitur lacinia ante vitae odio facilisis, vel aliquam
-                lectus efficitur. Proin non enim quis eros malesuada consectetur. Duis id lacus euismod, pretium
-                risus nec, posuere nunc. Nam ac felis feugiat, tempus arcu vel, dapibus neque. Curabitur ac
-                molestie nisl consectetur adipiscing elit. Sed vestibulum est vitae dui consectetur, eu mattis nulla
-                finibus.</p>
+            <p>{{serialized.desc}}</p>
         </div>
         <p class="read-more" onclick="Description()">Read more</p>
-        <!-- <div class="review">
-            <h3>Rate this product:</h3>
-            <div class="rating">
-                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-            </div>
-            <button class="btn">Submit Rating</button>
-        </div> -->
         <hr>
         <div class="contactno">
             <h2 class="contact">Contact information</h2>

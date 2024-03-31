@@ -430,15 +430,17 @@
                   <div class="carousel-item active">
                       {% for i in product %}
                       <div class="col-xs-3 col-sm-3 col-md-3">
-                          <div class="card" style="width: 26rem;">
+                          <div class="card product" id="{{i.id}}" style="width: 26rem;">
                               <img src='/media/{{i.image}}' class="card-img-top" alt="...">
                               <div class="card-body">
                                   <h2 class="card-title" id="namepr{{i.id}}">{{i.Product_Name}}</h2>
                                   <h2 class="card-title" id="namepr{{i.id}}">Rs. {{i.Product_Price}}</h2>
                                   <p class="card-text" style="font-size: 20px;">{{i.Description}}</p>
-                                  <span id="divpr{{i.id}}" class="divpr" style="margin-left: 35px;">
-                                      <button id="pr{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
-                                      <button id="pr{{i.id}}" class="btn btn-primary cart">See more</button>
+                                  <span class="divpr" style="margin-left: 35px;">
+                                      <button class="add-cart btn btn-primary cart">Add to Cart</button>
+                                      <a href="{% url 'incard' product_id=i.id %}">
+                                        <button class="see-details btn btn-primary cart">See more</button>
+                                      </a>
                                   </span>
                               </div>
                           </div>
@@ -470,16 +472,7 @@
   </div>
     <!-- for read more roll -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
-    <script>    
-      function Description() {
-        var desc = document.getElementById("description");
-        if (desc.style.maxHeight) {
-          desc.style.maxHeight = null;
-        } else {
-          desc.style.maxHeight = desc.scrollHeight + "px";
-        }
-      }
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   </body>
 </html>
