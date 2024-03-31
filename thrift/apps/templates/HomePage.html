@@ -348,9 +348,13 @@
                                   <h2 class="card-title" id="namepr{{i.id}}">{{i.Product_Name}}</h2>
                                   <h2 class="card-title" id="namepr{{i.id}}">Rs. {{i.Product_Price}}</h2>
                                   <p class="card-text" style="font-size: 20px;">{{i.Description}}</p>
-                                  <span id="divpr{{i.id}}" class="divpr" style="margin-left: 35px;">
-                                      <button id="pr{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
-                                      <button id="pr{{i.id}}" class="btn btn-primary cart">See more</button>
+                                  <span class="divpr" style="margin-left: 35px;">
+                                    <a href="{% url 'signup'%}">
+                                      <button class="btn btn-primary cart">Add to Cart</button>
+                                    </a>
+                                    <a href="{% url 'signup'%}">
+                                      <button class="btn btn-primary cart">See more</button>
+                                    </a>
                                   </span>
                               </div>
                           </div>

@@ -55,41 +55,6 @@ def HomePage(request):
         nSlides = n//4 + ceil((n/4)-(n//4))
         allProds.append([prod, range(1,nSlides), nSlides])
         params =  {'allProds':allProds}
-
-    if request.method =='POST':
-        uname = request.POST['productName']
-        Price = request.POST['price']
-        description = request.POST['description']
-        category = request.POST['category']
-        phone = request.POST['phone']
-        location = request.POST['location']
-        photo = request.FILES.get('images')
-        if photo:
-            try:
-                phone = int(phone)
-            except ValueError:
-                error_message = "Phone number must be an integer."
-                params =  {'allProds':allProds,'error':error_message}
-                return render(request, "HomePage.html", params)
-            try:
-                validate_image_width(photo)
-            except ValidationError as e:
-                params =  {'allProds':allProds,'error':e}
-                return render(request, "HomePage.html",params)
-            try:
-                validate_description_length(description)
-            except ValidationError as e:
-                params =  {'allProds':allProds,'error':e}
-                return render(request, "HomePage.html",params)  #
-            try:
-                validate_phone_number_length(phone)
-            except ValidationError as e:
-                params =  {'allProds':allProds,'error':e}
-                return render(request, "HomePage.html",params)
-
-            newproduct = Product.objects.create(Product_Name=uname,Product_Price=Price,Description=description,Phone_Number=phone, Location=location ,category=category,image=photo)
-        if newproduct:
-            return redirect('Home')
     return render (request , "HomePage.html", params)
 
 def login(request):
@@ -97,9 +62,10 @@ def login(request):
         uname = request.POST['username']
         password = request.POST['password']
         user = Customer.objects.get(Username=uname)
+        print(user.id)
         if user:
             if user.password == password:
-                return redirect('Home')
+                return redirect('customer', id=user.id)
         else:
             return redirect('login')
     return render (request , "loginin.html")
@@ -115,7 +81,8 @@ def incard(request, product_id):
                 'price': product.Product_Price,
                 'desc': product.Description,
                 'location': product.Location,
-                'image': product.image
+                'image': product.image,
+                'phone': product.Phone_Number
             }
             return render(request, "incard.html", {'serialized': serialized_product})
         except Product.DoesNotExist:
@@ -126,10 +93,11 @@ def incard(request, product_id):
 def profile(request):
     return render (request , "profile.html")
 
-def cart(request):
+def cart(request,cart_id):
+    
     return render (request , "cartDetails.html")
 
-def CustomerPage(request):
+def CustomerPage(request, id):
 
     allProds =[]
     catprods = Product.objects.values('category', 'id')
@@ -139,7 +107,7 @@ def CustomerPage(request):
         n = len(prod)
         nSlides = n//4 + ceil((n/4)-(n//4))
         allProds.append([prod, range(1,nSlides), nSlides])
-        params =  {'allProds':allProds}
+        params =  {'allProds':allProds,'id':id}
 
     if request.method =='POST':
         uname = request.POST['productName']
@@ -149,6 +117,7 @@ def CustomerPage(request):
         phone = request.POST['phone']
         location = request.POST['location']
         photo = request.FILES.get('images')
+        cus_id = id
         if photo:
             try:
                 phone = int(phone)
@@ -171,10 +140,20 @@ def CustomerPage(request):
             except ValidationError as e:
                 params =  {'allProds':allProds,'error':e}
                 return render(request, "CustomerPage.html",params)
+            
+            new_product = Product.objects.create(
+            Product_Name=uname,
+            Product_Price=Price,
+            Description=description,
+            Phone_Number=phone,
+            Location=location,
+            category=category,
+            image=photo,
+            customer_id=cus_id
+            )
 
-            newproduct = Product.objects.create(Product_Name=uname,Product_Price=Price,Description=description,Phone_Number=phone, Location=location ,category=category,image=photo)
-        if newproduct:
-            return redirect('customer')
+            if new_product:
+                return redirect('customer',id=id) 
         
     return render (request , "CustomerPage.html",params)
 

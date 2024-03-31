@@ -306,7 +306,7 @@
         <summary class="btn">Post for free</summary>
         <div class="container-form">
           <h1 class="po">Post Item</h1>
-          <form id="postItemForm" action="{% url 'Home' %}" method="post" enctype="multipart/form-data">
+          <form id="postItemForm" action="{% url 'customer' id=id%}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="input-container">
               <div class="form-group">
@@ -437,7 +437,10 @@
                                   <h2 class="card-title" id="namepr{{i.id}}">Rs. {{i.Product_Price}}</h2>
                                   <p class="card-text" style="font-size: 20px;">{{i.Description}}</p>
                                   <span class="divpr" style="margin-left: 35px;">
+                                    <a href="{% url 'cart' cart_id=i.id%}">
                                       <button class="add-cart btn btn-primary cart">Add to Cart</button>
+                                    </a>
+                                      
                                       <a href="{% url 'incard' product_id=i.id %}">
                                         <button class="see-details btn btn-primary cart">See more</button>
                                       </a>

@@ -14,7 +14,7 @@
         }
 
         .container {
-            margin: 140px auto;
+            margin: 100px auto;
             display: flex;
         }
 
@@ -32,10 +32,10 @@
         }
 
         .left-side h1 {
-            font-size: 30px;
+            font-size: 50px;
             font-family: Arial, Helvetica, sans-serif;
             font-style: unset;
-            /* margin-left: 70px; */
+            margin-left: 70px; 
 
         }
 
@@ -171,7 +171,6 @@
         <p class="price">RS.{{serialized.price}}</p>
         <hr>
 
-
         <div id="description" class="description">
             <p>{{serialized.desc}}</p>
         </div>
@@ -179,12 +178,11 @@
         <hr>
         <div class="contactno">
             <h2 class="contact">Contact information</h2>
-            <h2><i class="material-icons">call</i>Phone number :</h2>
+            <h2><i class="material-icons">call</i>Phone number :{{serialized.phone}}</h2>
             <h2><i class="material-icons">mail</i>Email :</h2>
 
         </div>
         <hr style="margin-top: 20px;">
-        <button class="btn">Add to Cart</button>
         <div class="location">
             <h2>Location</h2>
         </div>
