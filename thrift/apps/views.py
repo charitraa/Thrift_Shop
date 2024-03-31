@@ -93,8 +93,8 @@ def incard(request, product_id):
 def profile(request):
     return render (request , "profile.html")
 
-def cart(request,cart_id):
-    
+def cart(request):
+
     return render (request , "cartDetails.html")
 
 def CustomerPage(request, id):
