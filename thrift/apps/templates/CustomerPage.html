@@ -437,9 +437,9 @@
                                   <h2 class="card-title" id="namepr{{i.id}}">Rs. {{i.Product_Price}}</h2>
                                   <p class="card-text" style="font-size: 20px;">{{i.Description}}</p>
                                   <span class="divpr" style="margin-left: 35px;">
-                                    <a href="{% url 'cart' cart_id=i.id%}">
+
                                       <button class="add-cart btn btn-primary cart">Add to Cart</button>
-                                    </a>
+                                    
                                       
                                       <a href="{% url 'incard' product_id=i.id %}">
                                         <button class="see-details btn btn-primary cart">See more</button>
