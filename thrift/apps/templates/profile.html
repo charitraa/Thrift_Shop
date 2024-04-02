@@ -149,6 +149,12 @@
   font-size: 45px;
   margin-left: 50px;
 }
+
+.btnc{
+    font-size: 30px;
+    margin-left: 150px;
+    margin-top: 25px;
+}
     </style>
    
 </head>
@@ -157,7 +163,7 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#" style="font-size: 40px;">Profile</a>
+        <a href="{% url 'profile'%}" style="font-size: 40px;">Profile</a>
         <a href="#"style="font-size: 40px;">My Item</a>
       </div>
       <span style="font-size:50px;cursor:pointer" onclick="openNav()">&#9776;</span>
@@ -170,6 +176,9 @@
         <div class="container">
             <div class="center">
             </div>
+            <input type="file" id="imagePicker" style="display: none;">
+            <button class="btnc" onclick="document.getElementById('imagePicker').click();">Change</button>
+            
         </div>
         <form action="" method="POST">
             <div class="profile-pic"></div>
@@ -186,7 +195,7 @@
             <input type="text" name="address" id="address">
             <input type="email" name="email" id="email">
         </div>
-        <button class="save">Save</button>
+    <button class="save">Save</button>
         <button class="cancel">Cancel</button>
     </div>
     

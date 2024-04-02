@@ -1,9 +1,10 @@
-from django.shortcuts import render , redirect,HttpResponse
+from django.shortcuts import render, redirect, HttpResponse
 from .models import Customer, Product
 from math import ceil
-from PIL import Image # type: ignore
+from PIL import Image  # type: ignore
 from django.core.exceptions import ValidationError
 from django.core.exceptions import ObjectDoesNotExist
+
 
 def validate_image_width(image):
     # Open the image using PIL or Pillow
@@ -13,10 +14,13 @@ def validate_image_width(image):
     if width and height != 500:
         raise ValidationError("Image width and height must be 500 pixels.")
 
+
 def validate_description_length(description):
     if len(description) > 100 and len(description) < 50:
-        raise ValidationError("Description must be more than 50 land less than 100 characters long.")
-    
+        raise ValidationError(
+            "Description must be more than 50 land less than 100 characters long.")
+
+
 def validate_phone_number_length(phone):
     phone_str = str(phone)  # Convert to string if it's not already
     if len(phone_str) != 10:
@@ -24,7 +28,7 @@ def validate_phone_number_length(phone):
 
 
 def signup(request):
-    if request.method =='POST':
+    if request.method == 'POST':
         uname = request.POST['username']
         dob = request.POST['dob']
         email = request.POST['email']
@@ -32,33 +36,37 @@ def signup(request):
         repassword = request.POST['repassword']
         phone = request.POST['phone']
         gender = request.POST['gender']
-        user = Customer.objects.filter(Email = email)
+        user = Customer.objects.filter(Email=email)
 
         if user:
             return redirect('signup')
         else:
             if password == repassword:
-                newuser = Customer.objects.create(Username=uname,Email=email,password=password,phone_Number=phone, Gender=gender ,Date_of_birth=dob)
+                newuser = Customer.objects.create(
+                    Username=uname, Email=email, password=password, phone_Number=phone, Gender=gender, Date_of_birth=dob)
                 if newuser:
                     return redirect('login')
-                
-    return render(request,"Signup.html")
+
+    return render(request, "Signup.html")
 
 # Create your views here.
+
+
 def HomePage(request):
-    allProds =[]
+    allProds = []
     catprods = Product.objects.values('category', 'id')
     cats = {item['category'] for item in catprods}
     for cat in cats:
         prod = Product.objects.filter(category=cat)
         n = len(prod)
         nSlides = n//4 + ceil((n/4)-(n//4))
-        allProds.append([prod, range(1,nSlides), nSlides])
-        params =  {'allProds':allProds}
-    return render (request , "HomePage.html", params)
+        allProds.append([prod, range(1, nSlides), nSlides])
+        params = {'allProds': allProds}
+    return render(request, "HomePage.html", params)
+
 
 def login(request):
-    if  request.method =='POST':
+    if request.method == 'POST':
         uname = request.POST['username']
         password = request.POST['password']
         user = Customer.objects.get(Username=uname)
@@ -68,7 +76,8 @@ def login(request):
                 return redirect('customer', id=user.id)
         else:
             return redirect('login')
-    return render (request , "loginin.html")
+    return render(request, "loginin.html")
+
 
 def incard(request, product_id):
     if product_id is not None:  # Check if product_id is provided
@@ -90,14 +99,18 @@ def incard(request, product_id):
     else:
         return HttpResponse("Product ID not provided in URL")
 
+
 def profile(request):
-    return render (request , "profile.html")
+    return render(request, "profile.html")
+
 
 def cart(request):
 
-    return render (request , "cartDetails.html")
+    return render(request, "cartDetails.html")
+
 
 def CustomerPage(request, id):
+    print(id)
 
     allProds =[]
     catprods = Product.objects.values('category', 'id')
@@ -107,7 +120,7 @@ def CustomerPage(request, id):
         n = len(prod)
         nSlides = n//4 + ceil((n/4)-(n//4))
         allProds.append([prod, range(1,nSlides), nSlides])
-        params =  {'allProds':allProds,'id':id}
+        params = {'allProds': allProds, 'id': id}  # Make sure id is always included in the context
 
     if request.method =='POST':
         uname = request.POST['productName']
@@ -123,39 +136,44 @@ def CustomerPage(request, id):
                 phone = int(phone)
             except ValueError:
                 error_message = "Phone number must be an integer."
-                params =  {'allProds':allProds,'error':error_message}
+                params = {'allProds': allProds, 'error': error_message, 'id': id}
                 return render(request, "CustomerPage.html", params)
+
             try:
                 validate_image_width(photo)
             except ValidationError as e:
-                params =  {'allProds':allProds,'error':e}
-                return render(request, "CustomerPage.html",params)
+                error_message = str(e)
+                params = {'allProds': allProds, 'error': error_message, 'id': id}
+                return render(request, "CustomerPage.html", params)
+
             try:
                 validate_description_length(description)
             except ValidationError as e:
-                params =  {'allProds':allProds,'error':e}
-                return render(request, "CustomerPage.html",params)  #
+                error_message = str(e)
+                params = {'allProds': allProds, 'error': error_message, 'id': id}
+                return render(request, "CustomerPage.html", params)
+
             try:
                 validate_phone_number_length(phone)
             except ValidationError as e:
-                params =  {'allProds':allProds,'error':e}
-                return render(request, "CustomerPage.html",params)
+                error_message = str(e)
+                params = {'allProds': allProds, 'error': error_message, 'id': id}
+                return render(request, "CustomerPage.html", params)
             
+            # If all validations pass, create the new product
             new_product = Product.objects.create(
-            Product_Name=uname,
-            Product_Price=Price,
-            Description=description,
-            Phone_Number=phone,
-            Location=location,
-            category=category,
-            image=photo,
-            customer_id=cus_id
+                Product_Name=uname,
+                Product_Price=Price,
+                Description=description,
+                Phone_Number=phone,
+                Location=location,
+                category=category,
+                image=photo,
+                customer_id=cus_id
             )
 
             if new_product:
-                return redirect('customer',id=id) 
-        
-    return render (request , "CustomerPage.html",params)
+                # Redirect to the same page after successful form submission
+                return redirect('customer', id=id) 
 
-
-
+    return render(request, "CustomerPage.html", params)

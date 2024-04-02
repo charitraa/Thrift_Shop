@@ -306,11 +306,13 @@
         <summary class="btn">Post for free</summary>
         <div class="container-form">
           <h1 class="po">Post Item</h1>
-          <form id="postItemForm" action="{% url 'customer' id=id%}" method="post" enctype="multipart/form-data">
+          {% comment %} <form id="postItemForm" action="{% url 'customer' id=id%}" method="post" enctype="multipart/form-data"> {% endcomment %}
+            <form id="postItemForm" action="{% url 'customer' id=id %}" method="post" enctype="multipart/form-data">
+
             {% csrf_token %}
             <div class="input-container">
               <div class="form-group">
-                <label for="productName">Product Name:</label>
+                <label for="productName">Product Name:{{id}}</label>
                 <input
                   type="text"
                   id="productName"
