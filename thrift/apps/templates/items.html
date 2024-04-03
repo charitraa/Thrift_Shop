@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% static load %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Items</title>
+    <link rel="shortcut icon" href="{% static 'd6d7452b-b533-4267-acd1-ed30dad67ac8.jpeg'%}" type="image/x-icon">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .line {
+        width: 80%;
+        height: 200px;
+        background-color: rgb(72, 181, 235);
+
+        padding-top: 20px;
+        border: 2px solid black;
+      }
+      .head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #b4dcf1;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #ffffff;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        color: #000000;
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 45px;
+        margin-left: 50px;
+      }
+      h1 {
+        font-size: 70px;
+        color: white;
+        display: block;
+        margin-top: 10px;
+      }
+
+      .box {
+        display: flex;
+        padding: 50px 200px;
+        row-gap: 20px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-size: 20px;
+        background-color: #1d75c7;
+        height: 55px;
+        padding: 10px;
+        width: 150px;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <a href="{% url 'profile' profile_id=id %}" style="font-size: 40px"
+        >Profile</a
+      >
+      <a href="{% url 'items' items_id=id%}" style="font-size: 40px"
+        >My Item</a
+      >
+      <a href="{% url 'Home'%}" style="font-size: 40px">Logout</a>
+    </div>
+    <span style="font-size: 50px; cursor: pointer" onclick="openNav()"
+      >&#9776;</span
+    >
+    <div class="head">
+      <div class="line">
+        <h1 style="text-align: center">My Items</h1>
+      </div>
+    </div>
+
+    <div class="box">
+      {% for i in customer_items %}
+      <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="card product" id="{{i.id}}" style="width: 26rem">
+          <img src="/media/{{i.image}}" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h2 class="card-title" id="namepr{{i.id}}">{{i.Product_Name}}</h2>
+            <h2 class="card-title" id="namepr{{i.id}}">
+              Rs. {{i.Product_Price}}
+            </h2>
+            <p class="card-text" style="font-size: 20px">{{i.Description}}</p>
+            <span
+              class="divpr"
+              style="margin-left: 35px; display: flex; gap: 20px"
+            >
+              <a href="{% url 'edititem' product_id=i.id %}">
+                <button class="add-cart btn btn-primary cart">Edit</button>
+              </a>
+              <div class="div">
+                <form action="{% url 'items' items_id=i.id%}" method="POST">
+                  {% csrf_token %}
+                  <button class="see-details btn btn-primary cart">
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+  </body>
+</html>

@@ -1,213 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>{% static load %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
+    <link rel="shortcut icon" href="{% static 'd6d7452b-b533-4267-acd1-ed30dad67ac8.jpeg'%}" type="image/x-icon">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        .container .center {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background-color: rgb(255, 255, 255);
-            align-content: center;
-            margin-left: 50px;
-            border: 2px solid black;
-        }
+      .container .center {
+        background-image: url('{{customer_details.image.url}}');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+        align-content: center;
+        margin-left: 50px;
+        border: 2px solid black;
 
-        .box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 50px auto;
-            width: 60%;
-            background-color: rgb(255, 255, 255) ;
-            color: white;
-            height: 750px;
-            margin-top: 170 px;
-            border: 1px solid black;
-        }
+      }
 
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 50px auto;
+        width: 60%;
+        background-color: rgb(255, 255, 255);
+        color: white;
+        height: 750px;
+        margin-top: 170 px;
+        border: 1px solid black;
+      }
 
+      .label {
+        /* background-color: red; */
+        display: flex;
+        margin: 140px;
+        flex-direction: column;
+        font-size: 30px;
+        margin-top: 150px;
+        color: black;
+      }
 
-        form {
-            /* background-color: red; */
-            display: flex;
-            margin: 140px;
-            flex-direction: column;
-            font-size: 30px;
-            margin-top: 150px;
-            color: black;
-        }
+      label {
+        margin-top: 30px;
+        margin-bottom: 60px;
+      }
 
-        label {
-            margin-top: 30px;
-            margin-bottom: 60px;
-        }
+      input[type="text"],
+      input[type="email"] {
+        margin-bottom: 70px;
+        width: 500px;
+        padding: 12px;
+        font-size: 24px;
+        border: 1px solid #868181;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-right: 100px;
+      }
 
-        input[type="text"],
-        input[type="email"] {
+      .input {
+        /* background-color: blue; */
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+        margin-left: -90px;
+      }
 
-            margin-bottom: 70px;
-            width: 500px;
-            padding: 12px;
-            font-size: 24px;
-            border: 1px solid #868181;
-            border-radius: 5px;
-            box-sizing: border-box;
-            margin-right: 100px;
-        }
-
-        .input {
-            /* background-color: blue; */
-            display: flex;
-            flex-direction: column;
-            margin-top: 50px;
-            margin-left: -90px;
-        }
-
-        .line{
+      .line {
         width: 60%;
         height: 200px;
-        background-color:rgb(72, 181, 235);
+        background-color: rgb(72, 181, 235);
         margin-left: 458px;
         margin-bottom: -120px;
         padding-top: 20px;
         border: 2px solid black;
-    }
-    h1{
+      }
+      h1 {
         font-size: 70px;
-        color: white; 
-        display:block; margin-top: 10px;
-    }
-    .save{
-        position: absolute;
-        margin-left: 52%;
-        margin-top:28%;
+        color: white;
+        display: block;
+        margin-top: 10px;
+      }
+      .save {
         background-color: #ff5e62;
         padding: 10px 20px;
+        width: 150px;
         border-radius: 5px;
         cursor: pointer;
         font-size: 22px;
         color: white;
         border: none;
-    }
+      }
 
-    .cancel{
-        position: absolute;
-        margin-left: 38%;
-        margin-top:28%;
+      .cancel {
+        width: 150px;
+        margin-left: 50px;
         background-color: #ff5e62;
-        padding: 10px 20px; border-radius: 5px;
+        padding: 10px 40px;
+        border-radius: 5px;
         cursor: pointer;
         font-size: 22px;
         color: white;
         border: none;
         
+      }
 
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #b4dcf1;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
 
-    }
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #ffffff;
+        display: block;
+        transition: 0.3s;
+      }
 
+      .sidenav a:hover {
+        color: #000000;
+      }
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #b4dcf1;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 45px;
+        margin-left: 50px;
+      }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #ffffff;
-  display: block;
-  transition: 0.3s;
-}
+      .btnc {
+        font-size: 30px;
+        margin-left: 150px;
+        margin-top: 25px;
+      }
+      .btn{
+        display: flex;
+      }
+      .btn a{
+        text-decoration: none;
+      }
 
-.sidenav a:hover {
-  color: #000000;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 45px;
-  margin-left: 50px;
-}
-
-.btnc{
-    font-size: 30px;
-    margin-left: 150px;
-    margin-top: 25px;
-}
     </style>
-   
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="{% url 'profile'%}" style="font-size: 40px;">Profile</a>
-        <a href="#"style="font-size: 40px;">My Item</a>
-      </div>
-      <span style="font-size:50px;cursor:pointer" onclick="openNav()">&#9776;</span>
-      
-    <div class="line">
-    <h1 style="text-align: center;">Profile</h1>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <a
+        href="{% url 'profile' profile_id=customer_details.id %}"
+        style="font-size: 40px"
+        >Profile</a
+      >
+      <a href="{% url 'items' items_id=customer_details.id %}" style="font-size: 40px">My Item</a>
+      <a href="{% url 'Home'%}" style="font-size: 40px">Logout</a>
+    </div>
+    <span style="font-size: 50px; cursor: pointer" onclick="openNav()"
+      >&#9776;</span
+    >
 
+    <div class="line">
+      <h1 style="text-align: center">Profile</h1>
     </div>
     <div class="box">
-        <div class="container">
-            <div class="center">
-            </div>
-            <input type="file" id="imagePicker" style="display: none;">
-            <button class="btnc" onclick="document.getElementById('imagePicker').click();">Change</button>
-            
+      <form
+        action="{% url 'profile' profile_id=customer_details.id %}"
+        method="POST"  enctype="multipart/form-data"
+      >
+      {% csrf_token %}
+      {% load static %}
+        <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 50px;">
+          <div class="center">              
+          </div>
+          <input type="file" name='images' id="imagePicker" style="margin-left: 50px; height: 60px; width: 200px; padding:20px; font-size: 30px; border: none;">
         </div>
-        <form action="" method="POST">
-            <div class="profile-pic"></div>
-            <label for="username">Username :</label>
-            <label for="phone">Phone number :</label>
-            <label for="gender">Gender :</label>
-            <label for="address">Address :</label>
-            <label for="email">Email :</label>
-        </form>
+        <div class="label">
+          <div class="profile-pic"></div>
+          <label for="username">Username :</label>
+          <label for="phone">Phone number :</label>
+          <label for="gender">Gender :</label>
+          <label for="email">Email :</label>
+          <label for="password">Password :</label>
+        </div>
         <div class="input">
-            <input type="text" name="username" id="username">
-            <input type="text" name="phone" id="phone">
-            <input type="text" name="gender" id="gender">
-            <input type="text" name="address" id="address">
-            <input type="email" name="email" id="email">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value="{{customer_details.username}}"
+          />
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            value="{{customer_details.phone}}"
+          />
+          <input
+            type="text"
+            name="gender"
+            id="gender"
+            value="{{customer_details.gender}}"
+          />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value="{{customer_details.email}}"
+          />
+          <input
+            type="text"
+            name="password"
+            id="password"
+            value="{{customer_details.pass}}"
+          />
+          <div class="btn">
+            <button class="save">Save</button>
+            <a href="{% url 'customer' id=customer_details.id %}">
+              <div class="cancel">Cancel</div>
+            </a>
+          </div>
         </div>
-    <button class="save">Save</button>
-        <button class="cancel">Cancel</button>
-    </div>
-    
-<script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-    
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
-    </script>
-</body>
+      </form>
 
+    </div>
+
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+  </body>
 </html>

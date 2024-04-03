@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'd6d7452b-b533-4267-acd1-ed30dad67ac8.jpeg'%}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoginPage</title>
     <style>
@@ -42,7 +44,7 @@
             margin-top: 30px;
 
         }
-        form input{
+        form input {
             background-color: rgb(241, 230, 241);
             border-radius: 20px;
             border: hidden;
@@ -51,7 +53,7 @@
             height: 40px;
             
         }
-        label{
+        label {
             font-size: 20px;
 
         }
@@ -124,15 +126,23 @@
                 <label for="phone">Phone Number</label>
                 <input type="text"  name="phone" id="phone" required>         
                 <label for="gender">Gender</label>
-                <input type="gender" name="gender" id="gender" required>
+                <select id="gender" name="gender" required>
+                    <option value="" selected disabled>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
                 <label for="dob">Date of Birth</label>
                 <input type="date" name="dob" id="dob" required>
+                <label for="dob">Profile Image</label>
+                <input type="file" name="image" id="image" required>
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required>
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
                 <label for="repassword">Re-Password</label>
+                
                 <input type="repassword" name="repassword" id="repassword" required>
+                <div style="font-size: 30px; color: red;">{{error}}</div>
                 <button class="signbtn">Signup</button>
             </form> 
             <div class="buttn">

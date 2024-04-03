@@ -10,10 +10,13 @@ urlpatterns = [
     path('login/', views.login, name="login"),
     path('incard/<int:product_id>/',views.incard, name="incard"),
     path('customer/<int:id>/',views.CustomerPage, name="customer"),
-    path('cart/',views.cart, name="cart"),
-    path('profile/',views.profile, name="profile"),
+    path('cart/<int:id>/',views.cart, name="cart"),
+    path('profile/<int:profile_id>',views.profile, name="profile"),
+    path('items/<int:items_id>',views.items, name="items"),
+    path('itemedit/<int:product_id>',views.editItem, name="edititem"),
+
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-    
+
 
 
 
