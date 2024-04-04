@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'd6d7452b-b533-4267-acd1-ed30dad67ac8.jpeg'%}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Product Details</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 100px auto;
+            display: flex;
+        }
+
+        .left-side {
+            flex-basis: 40%;
+            margin-left: 100px;
+        }
+
+        .left-side img.product-image {
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 70px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-left: 70px;
+        }
+
+        .left-side h1 {
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: unset;
+            margin-left: 70px; 
+
+        }
+
+        .right-side {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 25px;
+            width: 40%;
+            margin-left: 170px;
+            margin-top: 30px;
+        }
+
+        .right-side .price {
+            color: #0c1825;
+            font-size: 50px;
+            font-weight: bold;
+            margin-left: 40px;
+            margin-bottom: 0px;
+        }
+
+        .right-side hr {
+            position: relative;
+
+        }
+
+        .right-side .description {
+            margin-top: 20px;
+            font-size: 25px;
+            overflow: hidden;
+            max-height: 115px;
+            transition: max-height 0.3s ease;
+            margin-left: 40px;
+            text-align: justify;
+            width: 90%;
+
+        }
+
+        .read-more {
+            color: rgb(80, 151, 245);
+            cursor: pointer;
+            display: block;
+        }
+
+        .review {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .review h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 24px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating label:hover,
+        .rating input:checked~label {
+            color: #ffcc00;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            float: right;
+
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .contactno {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .contactno .contact {
+            font-size: 30px;
+            margin-top: 10px;
+        }
+
+        .contactno h2 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 25px;
+            margin-left: 20px;
+        }
+
+        .contactno h2 i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .location h2{
+            font-size: 30px;
+            margin-top: 100px;
+            margin-left: 46px;
+        }
+    </style>
+</head>
+    {%load static%}
+<div class="container">
+    
+    <div class="left-side">
+        <h1>{{serialized.name}}</h1>
+        <img src="{{serialized.image.url}}" alt="Product Image" class="product-image">
+    </div>
+    <div class="right-side">
+        <p class="price">RS.{{serialized.price}}</p>
+        <hr>
+
+        <div id="description" class="description">
+            <p>{{serialized.desc}}</p>
+        </div>
+        <p class="read-more" onclick="Description()">Read more</p>
+        <hr>
+        <div class="contactno">
+            <h2 class="contact">Contact information</h2>
+            <h2><i class="material-icons">call</i>Phone number :{{serialized.phone}}</h2>
+            <h2><i class="material-icons">mail</i>Email :</h2>
+
+        </div>
+        <hr style="margin-top: 20px;">
+        <div class="location">
+            <h2>Location</h2>
+        </div>
+        
+    </div>
+
+</div>
+<script>
+    function Description() {
+        var desc = document.getElementById("description");
+        var readMoreText = document.querySelector(".read-more");
+
+        if (desc.style.maxHeight) {
+            desc.style.maxHeight = null;
+            readMoreText.innerText = "Read more";
+        } else {
+            desc.style.maxHeight = desc.scrollHeight + "px";
+            readMoreText.innerText = "Read less";
+        }
+    }
+
+
+</script>
+</body>
+
+</html>

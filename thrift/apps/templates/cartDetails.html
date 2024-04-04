@@ -512,9 +512,9 @@
             <p class="card-text" style="font-size: 20px">{{i.Description}}</p>
             <span class="divpr" style="margin-left: 50px; display: flex; gap: 20px;">
               <a class="div">
-                  <button class="add-cart btn btn-primary cart">Delete</button>
+
               </a>
-              <a href="">
+              <a hrefc="{% url 'seecart' product_id=i.id%}">
                 <button class="see-details btn btn-primary cart">See more</button>
               </a>
             </span>

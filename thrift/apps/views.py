@@ -285,5 +285,30 @@ def editItem(request,product_id):
 
 def cart(request,id): 
     cart = Cart.objects.filter(customer_id=id)
+    customer_id = id
     cart_count = cart.count()
-    return render (request , "addCart.html",{'customer_items': cart,'cart_items':cart_count})
+    if request.method =='POST':
+        cart = get_object_or_404(Cart, id=id)
+        cart.delete()
+        return redirect('cart',id=cart.customer_id)
+
+    return render (request , "addCart.html",{'customer_items': cart,'cart_items':cart_count,'id':customer_id})
+
+def seecart(request, product_id):
+    if product_id is not None:  # Check if product_id is provided
+        try:
+            cart = Cart.objects.get(pk=product_id)
+            # Assuming you have a serializer to serialize product details
+            serialized_product = {
+                'name': cart.Product_Name,
+                'price': cart.Product_Price,
+                'desc': cart.Description,
+                'image': cart.image,
+                'phone': cart.Phone_Number
+            }
+            return render(request, "seecart.html", {'serialized': serialized_product})
+        except Product.DoesNotExist:
+            return HttpResponse("Product not found")
+    else:
+        return HttpResponse("Product ID not provided in URL")
+    

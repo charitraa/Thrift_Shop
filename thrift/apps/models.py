@@ -36,6 +36,7 @@ class Cart(models.Model):
     Product_Name = models.CharField(max_length=200)
     Product_Price = models.CharField(max_length=200)
     Description = models.TextField()
+    Phone_Number = models.CharField(max_length=200, default='')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, default=None)
     image = models.ImageField(upload_to='cart', default='')
     

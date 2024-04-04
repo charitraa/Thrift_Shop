@@ -481,7 +481,7 @@
     <div class="checkout-header">
       <div class="header-content">
         <div class="checkout-header-left-section">
-          <a href="{% url 'Home'%}">
+          <a href="{% url 'customer' id=id %}">
             <span class="thrift">Thrift</span>
             <span class="nepal">Nepal</span>
           </a>
@@ -511,10 +511,11 @@
             </h2>
             <p class="card-text" style="font-size: 20px">{{i.Description}}</p>
             <span class="divpr" style="margin-left: 50px; display: flex; gap: 20px;">
-              <a class="div">
-                  <button class="add-cart btn btn-primary cart">Delete</button>
-              </a>
-              <a href="">
+                <form action="{% url 'cart' id=i.id%}" method="POST">
+                    {% csrf_token %}
+                    <button class="add-cart btn btn-primary cart">Delete</button>
+                  </form>
+              <a href="{% url 'seecart' product_id=i.id%}">
                 <button class="see-details btn btn-primary cart">See more</button>
               </a>
             </span>
