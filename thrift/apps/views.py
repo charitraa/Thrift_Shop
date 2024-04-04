@@ -123,7 +123,9 @@ def incard(request, product_id):
                 'image': product.image,
                 'phone': product.Phone_Number
             }
-            return render(request, "incard.html", {'serialized': serialized_product})
+            customer_email = product.customer.Email
+            return render(request, "incard.html", {'serialized': serialized_product, 'customer_email': customer_email})
+
         except Product.DoesNotExist:
             return HttpResponse("Product not found")
     else:
