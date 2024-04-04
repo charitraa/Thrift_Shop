@@ -173,17 +173,19 @@ def addcart(request,id,product_id):
         name = product.Product_Name
         price = product.Product_Price
         desc = product.Description
+        phone = product.Phone_Number
         images = product.image
         cus_id = id
 
-        Cart.objects.create(Product_Name=name,Product_Price=price,Description=desc,customer_id=cus_id,image=images)
+        Cart.objects.create(Product_Name=name,Product_Price=price,Description=desc,customer_id=cus_id,image=images,Phone_Number=phone)
         return redirect('cart',id=cus_id)
 
     return render (request , "cartDetails.html",{'customer_items': cart,'cart_items':cart_count})
 
 def CustomerPage(request, id):
     customer = get_object_or_404(Customer, id=id)
-    
+    cart = Cart.objects.filter(customer_id=id)
+    cart_count = cart.count()
     allProds =[]
     catprods = Product.objects.values('category', 'id')
     cats = {item['category'] for item in catprods}
@@ -192,7 +194,7 @@ def CustomerPage(request, id):
         n = len(prod)
         nSlides = n//4 + ceil((n/4)-(n//4))
         allProds.append([prod, range(1,nSlides), nSlides])
-        params =  {'allProds':allProds,'id':id,'image':customer.image.url}
+        params =  {'allProds':allProds,'id':id,'image':customer.image.url,'cart_No':cart_count}
 
     if request.method =='POST':
         uname = request.POST['productName']
