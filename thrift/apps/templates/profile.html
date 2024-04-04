@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>{% static load %}
+  <head>{% load static  %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
@@ -175,7 +175,9 @@
         >Profile</a
       >
       <a href="{% url 'items' items_id=customer_details.id %}" style="font-size: 40px">My Item</a>
+      <a href="{% url 'customer' id=customer_details.id%}" style="font-size: 40px">Home</a>
       <a href="{% url 'Home'%}" style="font-size: 40px">Logout</a>
+
     </div>
     <span style="font-size: 50px; cursor: pointer" onclick="openNav()"
       >&#9776;</span
@@ -194,7 +196,6 @@
         <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 50px;">
           <div class="center">              
           </div>
-          <input type="file" name='images' id="imagePicker" style="margin-left: 50px; height: 60px; width: 200px; padding:20px; font-size: 30px; border: none;">
         </div>
         <div class="label">
           <div class="profile-pic"></div>

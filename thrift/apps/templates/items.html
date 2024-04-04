@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% static load %}
+    {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Items</title>
@@ -105,6 +105,7 @@
       <a href="{% url 'items' items_id=id%}" style="font-size: 40px"
         >My Item</a
       >
+      <a href="{% url 'customer' id=id%}" style="font-size: 40px">Home</a>
       <a href="{% url 'Home'%}" style="font-size: 40px">Logout</a>
     </div>
     <span style="font-size: 50px; cursor: pointer" onclick="openNav()"

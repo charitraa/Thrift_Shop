@@ -35,6 +35,14 @@ def checkemail(email):
 
     return emailResult
 
+def passwordvalidation(password):
+    regex=re.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
+    if re.fullmatch(regex, password):
+        passwordResult=True
+    else:
+        passwordResult=False
+    return passwordResult
+
 def signup(request):
     if request.method =='POST':
         uname = request.POST['username']
@@ -47,22 +55,32 @@ def signup(request):
         gender = request.POST['gender']
         user = Customer.objects.filter(Email = email)
 
-
-        
         if user:
-            return redirect('signup')
+            return render(request, "Signup.html",{'error':'Your Email has been exist'})
+        
         else:
             if password == repassword:
                     emailResult = checkemail(email)
+                    password = passwordvalidation(password)
                     if emailResult:
-                        newuser = Customer.objects.create(Username=uname,Email=email,password=password,phone_Number=phone, Gender=gender ,Date_of_birth=dob,image=images)
-                        if newuser:
-                            return redirect('login')
-
+                        if password:
+                            try: 
+                                validate_phone_number_length(phone)
+                                newuser = Customer.objects.create(Username=uname,Email=email,password=password,phone_Number=phone, Gender=gender ,Date_of_birth=dob,image=images)
+                                if newuser:
+                                    return redirect('login')
+                            except ValidationError as e:
+                                return render(request, "Signup.html",{'error':e})
+                        else:
+                            return render(request, "Signup.html",{'error':'''
+                                                                Requires at least one lowercase letter.
+                                                                Requires at least one uppercase letter.
+                                                                Requires at least one digit.
+                                                                Requires at least one special character among @$!%*?&.
+                                                                '''})
                     else:
                         return render(request, "Signup.html",{'error':'Please put the valid email'})
-                
-                
+
     return render(request,"Signup.html")
 
 # Create your views here.
@@ -79,17 +97,17 @@ def HomePage(request):
     return render (request , "HomePage.html", params)
 
 def login(request):
-    if  request.method =='POST':
-        uname = request.POST['username']
-        password = request.POST['password']
-        user = Customer.objects.get(Username=uname)
-        print(user.id)
-        if user:
-            if user.password == password:
-                return redirect('customer', id=user.id)
+    if request.method == 'POST':
+        uname = request.POST.get('username')
+        password = request.POST.get('password')
+        users = Customer.objects.filter(Username=uname, password=password)
+        if users.exists():
+            user = users.first()
+            # Assuming there's only one user with matching credentials
+            return redirect('customer', id=user.id)
         else:
-            return redirect('login')
-    return render (request , "loginin.html")
+            return render(request, "loginin.html", {'error': 'Username or Password is invalid'})
+    return render(request, "loginin.html")
 
 def incard(request, product_id):
     if product_id is not None:  # Check if product_id is provided
@@ -143,27 +161,27 @@ def profile(request,profile_id):
 
     return render (request , "profile.html",{'customer_details':customer_dict})
 
-def cart(request,id):
-    print(id)
+def addcart(request,id,product_id): 
+    
     cart = Cart.objects.filter(customer_id=id)
-    print(cart)
+
     cart_count = cart.count() 
     if request.method=='POST':
-        product= get_object_or_404(Product, id=id)
+        product= get_object_or_404(Product, id=product_id)
         name = product.Product_Name
         price = product.Product_Price
         desc = product.Description
         images = product.image
-        cus_id = product.customer_id
-        print(cus_id)
+        cus_id = id
+
         Cart.objects.create(Product_Name=name,Product_Price=price,Description=desc,customer_id=cus_id,image=images)
         return redirect('cart',id=cus_id)
-    
-    
+
     return render (request , "cartDetails.html",{'customer_items': cart,'cart_items':cart_count})
 
 def CustomerPage(request, id):
-
+    customer = get_object_or_404(Customer, id=id)
+    
     allProds =[]
     catprods = Product.objects.values('category', 'id')
     cats = {item['category'] for item in catprods}
@@ -172,7 +190,7 @@ def CustomerPage(request, id):
         n = len(prod)
         nSlides = n//4 + ceil((n/4)-(n//4))
         allProds.append([prod, range(1,nSlides), nSlides])
-        params =  {'allProds':allProds,'id':id}
+        params =  {'allProds':allProds,'id':id,'image':customer.image.url}
 
     if request.method =='POST':
         uname = request.POST['productName']
@@ -264,3 +282,8 @@ def editItem(request,product_id):
 
 
     return render(request,"itemsDetails.html",{'customer_items': product_dict})
+
+def cart(request,id): 
+    cart = Cart.objects.filter(customer_id=id)
+    cart_count = cart.count()
+    return render (request , "addCart.html",{'customer_items': cart,'cart_items':cart_count})

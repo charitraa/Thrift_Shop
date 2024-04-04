@@ -388,12 +388,12 @@
       </details>
 
       <div class="logsign" id="{{id}}">
-        <a href="{% url 'cart' id=id %}">
+        <a href="{% url 'cart' id=id%}">
           <i class="fa-solid fa-cart-shopping"></i>
         </a>
         <a href="{% url 'profile' profile_id=id %}">
           <div class="proimg">
-            <img src="{% static 'back.jpg'%}" alt="">
+            <img src="{{image}}" alt="">
           </div>
         </a>
       </div>
@@ -442,7 +442,7 @@
                                   <p class="card-text" style="font-size: 20px;">{{i.Description}}</p>
                                   <span class="divpr" style="margin-left: 30px; margin-top: 20px; display: flex; gap: 20px;">
                                     <a class="div">
-                                      <form action="{% url 'cart' id=i.id %}" method="POST">
+                                      <form action ="{% url 'cart' id=id product_id=i.id%}" method="POST">
                                         {% csrf_token %}
                                         <button class="add-cart btn btn-primary cart">Add to Cart</button>
                                       </form>
