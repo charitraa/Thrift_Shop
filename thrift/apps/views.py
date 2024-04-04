@@ -56,7 +56,7 @@ def signup(request):
         user = Customer.objects.filter(Email = email)
 
         if user:
-            return render(request, "Signup.html",{'error':'Your Email has been exist'})
+            return render(request, "Signup.html",{'error':'Your Email has been already exist'})
         
         else:
             if password == repassword:
@@ -66,7 +66,7 @@ def signup(request):
                         if password:
                             try: 
                                 validate_phone_number_length(phone)
-                                newuser = Customer.objects.create(Username=uname,Email=email,password=password,phone_Number=phone, Gender=gender ,Date_of_birth=dob,image=images)
+                                newuser = Customer.objects.create(Username=uname,Email=email,password=repassword,phone_Number=phone, Gender=gender ,Date_of_birth=dob,image=images)
                                 if newuser:
                                     return redirect('login')
                             except ValidationError as e:
@@ -112,28 +112,39 @@ def login(request):
 def incard(request, product_id):
     if product_id is not None:  # Check if product_id is provided
         try:
+            # Try to get the product with the given product_id from the database
             product = Product.objects.get(pk=product_id)
+
             # Assuming you have a serializer to serialize product details
+            # Create a dictionary containing serialized product details
             serialized_product = {
                 'name': product.Product_Name,
                 'publish': product.Product_pub,
                 'price': product.Product_Price,
                 'desc': product.Description,
                 'location': product.Location,
-                'image': product.image,
+                'image': product.image,  # Assuming 'image' is a URL to the image file
                 'phone': product.Phone_Number
             }
+
+            # Access the customer's email associated with the product
             customer_email = product.customer.Email
+
+            # Render the incard.html template with serialized product details and customer email
             return render(request, "incard.html", {'serialized': serialized_product, 'customer_email': customer_email})
 
         except Product.DoesNotExist:
+            # If the product with the given product_id does not exist, return a 404 error
             return HttpResponse("Product not found")
     else:
+        # If product_id is not provided in the URL, return a message indicating so
         return HttpResponse("Product ID not provided in URL")
+
 
 def profile(request,profile_id):
 
     customer = get_object_or_404(Customer, id=profile_id)
+
     customer_dict = {
         'id':customer.id,
         'username': customer.Username,
@@ -150,14 +161,12 @@ def profile(request,profile_id):
         passs = request.POST['password']
         phone = request.POST['phone']
         gender = request.POST['gender']
-        images = request.FILES.get('images')
         customer.Username=uname
         customer.Gender=email
         customer.phone_Number=phone
         customer.Email=email
         customer.Gender=gender
         customer.password=passs
-        customer.image=images
         customer.save()
         return redirect('profile',profile_id=customer.id)
 
@@ -166,8 +175,8 @@ def profile(request,profile_id):
 def addcart(request,id,product_id): 
     
     cart = Cart.objects.filter(customer_id=id)
-
-    cart_count = cart.count() 
+    cart_count = cart.count()
+    
     if request.method=='POST':
         product= get_object_or_404(Product, id=product_id)
         name = product.Product_Name
@@ -272,15 +281,13 @@ def editItem(request,product_id):
         desc = request.POST['description']
         cat = request.POST['category']
         loaction = request.POST['location']
-        images = request.FILES.get('images')
 
         product.Product_Name=uname
         product.Product_Price=price
         product.Description=desc
         product.category=cat
         product.Location=loaction
-        product.image=images
-
+        
         product.save()
         return redirect('edititem',product_id=product.id)
 

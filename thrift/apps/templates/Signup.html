@@ -133,7 +133,7 @@
                 Create Account
             </div>
             
-            <form action="{% url 'signup'%}" method="POST">
+            <form action="{% url 'signup'%}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label for="username">Username</label>
                 <input type="text"  name="username" id="username" required>
